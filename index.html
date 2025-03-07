@@ -7,23 +7,33 @@
 </head>
 <body>
     <h1>C0debreaker</h1>
-    <p>Beans</p>
-    <p>Beans</p>
-    <p>Beans</p> 
+    <p>Please select a cipher to begin</p>
+    <br><br>
 </body>
+
 
 <!--Dropdown for selecting a cipher-->
 <form>
     <select name="selectCipher">
-        <option value="Binary"></option>
-        <option value="Hex"></option>
-        <option value="Morse"></option>
-        <option value="Caesar"></option>
-        <option value="Vigenere"></option>
-        <option value="Affine"></option>
+        <option value="Binary">Binary</option>
+        <option value="Hex">Hex</option>
+        <option value="Morse">Morse</option>
+        <option value="Caesar">Caesar</option>
+        <option value="Vigenere">Vigenere</option>
     </select>
-    <br><br>
-    <input type="submit" value="Submit">
+        <br><br>
 </form>
 
+<!--User input for encoding/decoding-->
+<form>
+    <input type="text" maxlength="200" placeholder="Insert text to encode here!" size="20" />
+    <input type="submit" value="Encode" />
+    <br><br>
+</form>
+
+<form>
+    <input type="text" maxlength="200" placeholder="Insert text to decode here!" size="20" />
+    <input type="submit" value="Decode" />
+    <br><br>
+</form>
 </html>
