@@ -3,3 +3,9 @@ body{
     background: gray;
     text-align: center;
 }
+
+.outputArea{
+    background-color: red;
+    width: 30px;
+    height: 30px;
+}
