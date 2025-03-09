@@ -3,3 +3,7 @@ body{
     background: gray;
     text-align: center;
 }
+
+.outputArea{
+    background: white
+}
