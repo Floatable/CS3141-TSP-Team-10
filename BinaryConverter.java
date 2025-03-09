@@ -3,7 +3,13 @@ import java.util.Scanner;
 public class BinaryConverter {
 
     static String encode(String baseTenValue) {
-        int value = Integer.parseInt(baseTenValue);
+        int value = 0;
+        try {
+            value = Integer.parseInt(baseTenValue);
+        }
+        catch (NumberFormatException e) {
+            return "Incorrect input, please try again";
+        }
         String binaryValue = "";
         int tempVal;
         String tempStr = "";
@@ -35,14 +41,23 @@ public class BinaryConverter {
         for (int i = binaryValue.length() - 1; i >= 0; i--) {
             //store the bit being examined
             String currentBit = binaryValue.substring(i, i + 1);
-            if (currentBit.equals("1")) {
+            //make sure the bit is a 0 or 1
+            if (!(currentBit.equals(0)) && !(currentBit.equals(1))) {
+                return "Incorrect input, please try again";
+            }
+            else if (currentBit.equals("1")) {
                 baseTenValue += Math.pow(2, place);
             }
             //increment the bit being examined
             place++;
         }
 
-        return String.valueOf(baseTenValue);
+        try {
+            return String.valueOf(baseTenValue);
+        }
+        catch (NumberFormatException e) {
+            return "Incorrect input, please try again";
+        }
     }
 
     @SuppressWarnings("resource")
