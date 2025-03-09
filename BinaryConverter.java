@@ -4,6 +4,7 @@ public class BinaryConverter {
 
     static String encode(String baseTenValue) {
         int value = 0;
+        //make sure input is valid
         try {
             value = Integer.parseInt(baseTenValue);
         }
