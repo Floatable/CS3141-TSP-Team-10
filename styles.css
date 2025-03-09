@@ -5,7 +5,8 @@ body{
 }
 
 .outputArea{
-    background-color: red;
-    width: 30px;
-    height: 30px;
+    width: 80%;
+    padding: 10px;
+    border: 5px solid darkred;
+    margin: 0;
 }
