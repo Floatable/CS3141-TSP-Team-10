@@ -4,6 +4,7 @@ public class BinaryConverter {
 
     static String encode(String baseTenValue) {
         int value = 0;
+        //try-catch statement to make sure input is valid
         try {
             value = Integer.parseInt(baseTenValue);
         }
@@ -18,7 +19,7 @@ public class BinaryConverter {
         while (value != 0) {
             tempVal = value;
             value /= 2;
-            //decide if the bit added should be a 1 or a zero
+            //decide if the bit added should be a 1 or a 0
             if ((value * 2) == tempVal) {
                 tempStr = "0";
             }
@@ -51,7 +52,7 @@ public class BinaryConverter {
             //increment the bit being examined
             place++;
         }
-
+        //try-catch statement to make sure input is valid
         try {
             return String.valueOf(baseTenValue);
         }
