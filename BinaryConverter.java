@@ -42,7 +42,7 @@ public class BinaryConverter {
             //store the bit being examined
             String currentBit = binaryValue.substring(i, i + 1);
             //make sure the bit is a 0 or 1
-            if (!(currentBit.equals(0)) && !(currentBit.equals(1))) {
+            if (!(currentBit.equals("0")) && !(currentBit.equals("1"))) {
                 return "Incorrect input, please try again";
             }
             else if (currentBit.equals("1")) {
