@@ -1,6 +1,7 @@
-function encode(baseTenValue) {
+function encode() {
     alert("Testing");
-    let value = 0;
+    let value = document.querySelector("#encodeInput").value;
+    let output = document.querySelector("#encodeOutput");
     //make sure input is valid
     try {
         value = parseInt(baseTenValue);
@@ -26,13 +27,16 @@ function encode(baseTenValue) {
         binaryValue = tempStr;
     }
 
-    return binaryValue;
+    output.innerHTML = binaryValue;
+    return output;
 }
 
-function decode(binaryValue) {
+function decode() {
     alert("Testing");
+    let binaryValue = document.querySelector("#decodeInput").value;
     let baseTenValue = 0;
     let place = 0;
+    let output = document.querySelector("#decodeOutput");
 
     //iterate through the binary string backwards
     for (let i = binaryValue.length - 1; i >= 0; i--) {
@@ -49,7 +53,8 @@ function decode(binaryValue) {
     }
 
     try {
-        return String(baseTenValue);
+        output.innerHTML = String(baseTenValue);
+        return output;
     } catch (e) {
         return "Incorrect input, please try again";
     }

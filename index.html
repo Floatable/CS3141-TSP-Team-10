@@ -27,16 +27,15 @@
 
 <!--Input/output for encoding-->
 <form>
-    <input type="text" maxlength="200" placeholder="Insert text to encode here!" size="20" />
-    <input onclick="encode()" type="submit" value="Encode" />
+    <input id="encodeInput" type="text" maxlength="200" placeholder="Insert text to encode here!" size="20" />
+    <button onclick="encode()" type="submit" value="Encode">Encode</button>
     <br>
     Output:
     <br>
 </form>
 
 <div class="outputArea">
-    <!--Get output to display here-->
-    <p>
+    <p id="encodeOutput">
         This is the encrypted text
         <br><br>
     </p>
@@ -45,16 +44,15 @@
 
 <!--Input/output for decoding-->
 <form>
-    <input type="text" maxlength="200" placeholder="Insert text to decode here!" size="20" />
-    <input onclick="decode()"type="submit" value="Decode" />
+    <input id="decodeInput" type="text" maxlength="200" placeholder="Insert text to decode here!" size="20" />
+    <button onclick="decode()" type="submit" value="Decode">Decode</button>
     <br>
     Output:
     <br>
 </form>
 
 <div class="outputArea">
-    <!--Get output to display here-->
-    <p>
+    <p id="decodeOutput">
         This is the decrypted Text
         <br><br>
     </p>
