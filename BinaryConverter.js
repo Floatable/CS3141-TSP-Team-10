@@ -1,5 +1,4 @@
 function encode() {
-    alert("Testing");
     let value = document.querySelector("#encodeInput").value;
     let output = document.querySelector("#encodeOutput");
     //make sure input is valid
@@ -32,7 +31,6 @@ function encode() {
 }
 
 function decode() {
-    alert("Testing");
     let binaryValue = document.querySelector("#decodeInput").value;
     let baseTenValue = 0;
     let place = 0;

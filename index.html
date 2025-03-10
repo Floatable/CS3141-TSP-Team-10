@@ -72,6 +72,7 @@
             //make sure the bit is a 0 or 1
             if (currentBit !== "0" && currentBit !== "1") {
                 output.innerHTML = "Incorrect input, please try again";
+                return;
             } else if (currentBit === "1") {
                 baseTenValue += Math.pow(2, place);
             }
@@ -83,6 +84,7 @@
             output.innerHTML = String(baseTenValue);
         } catch (e) {
             output.innerHTML = "Incorrect input, please try again";
+            return;
         }
     }
 
@@ -95,6 +97,7 @@
             value = parseInt(baseTenValue);
         } catch (e) {
             output.innerHTML = "Incorrect input, please try again";
+            return;
         }
         let binaryValue = "";
         let tempVal;
