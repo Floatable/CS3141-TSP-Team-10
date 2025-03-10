@@ -28,7 +28,7 @@
 <!--Input/output for encoding-->
 <form>
     <input id="encodeInput" type="text" maxlength="200" placeholder="Insert text to encode here!" size="20" />
-    <button onclick="test()"> Encode </button>
+    <button onclick="encode()"> Encode </button>
     <br>
     Output:
     <br>
@@ -59,12 +59,6 @@
 </div>
 
 <script>
-    function test() {
-        let input = document.querySelector("#encodeInput").value;
-        let output = document.querySelector("#encodeOutput");
-        output.innerHTML = input;
-    }
-    
     function decode() {
         let binaryValue = String(document.querySelector("#decodeInput").value);
         let baseTenValue = 0;
@@ -86,8 +80,8 @@
         }
 
         try {
-            // output.innerHTML = String(baseTenValue);
-            output.innerHTML = "Test";
+            alert(String(baseTenValue));
+            output.innerHTML = String(baseTenValue);
         } catch (e) {
             return "Incorrect input, please try again";
         }
@@ -121,6 +115,7 @@
             binaryValue = tempStr;
         }
 
+        alert(binaryValue);
         output.innerHTML = binaryValue;
     }
 </script>
