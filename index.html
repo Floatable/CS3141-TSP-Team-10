@@ -28,7 +28,7 @@
 <!--Input/output for encoding-->
 <form>
     <input id="encodeInput" type="text" maxlength="200" placeholder="Insert text to encode here!" size="20" />
-    <button onclick="encode()" type="submit" value="Encode">Encode</button>
+    <button onclick="encode()">Encode</button>
     <br>
     Output:
     <br>
@@ -45,7 +45,7 @@
 <!--Input/output for decoding-->
 <form>
     <input id="decodeInput" type="text" maxlength="200" placeholder="Insert text to decode here!" size="20" />
-    <button onclick="decode()" type="submit" value="Decode">Decode</button>
+    <button onclick="decode()" >Decode</button>
     <br>
     Output:
     <br>
@@ -82,10 +82,41 @@ function decode() {
 
     try {
         output.innerHTML = String(baseTenValue);
-        return output;
     } catch (e) {
         return "Incorrect input, please try again";
     }
+}
+
+function encode() {
+    alert("Testing");
+    let value = document.querySelector("#encodeInput").value;
+    let output = document.querySelector("#encodeOutput");
+    //make sure input is valid
+    try {
+        value = parseInt(baseTenValue);
+    } catch (e) {
+        return "Incorrect input, please try again";
+    }
+    let binaryValue = "";
+    let tempVal;
+    let tempStr = "";
+
+    //iteratively divide the input by 2
+    while (value !== 0) {
+        tempVal = value;
+        value = Math.floor(value / 2);
+        //decide if the bit added should be a 1 or a zero
+        if ((value * 2) === tempVal) {
+            tempStr = "0";
+        } else {
+            tempStr = "1";
+        }
+        //add the bit to the beginning of the string
+        tempStr += binaryValue;
+        binaryValue = tempStr;
+    }
+
+    output.innerHTML = binaryValue;
 }
 </script>
 
