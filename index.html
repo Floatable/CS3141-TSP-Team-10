@@ -88,7 +88,8 @@
     }
 
     function encode() {
-        let value = String(document.querySelector("#encodeInput").value);
+        let baseTenValue = String(document.querySelector("#encodeInput").value);
+        let value = 0;
         let output = document.querySelector("#encodeOutput");
         //make sure input is valid
         try {
