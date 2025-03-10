@@ -81,6 +81,7 @@ function decode() {
 
     try {
         output.innerHTML = String(baseTenValue);
+        return output;
     } catch (e) {
         return "Incorrect input, please try again";
     }
@@ -115,6 +116,7 @@ function encode() {
     }
 
     output.innerHTML = binaryValue;
+    return output;
 }
 </script>
 
