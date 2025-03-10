@@ -28,7 +28,7 @@
 <!--Input/output for encoding-->
 <form>
     <input id="encodeInput" type="text" maxlength="200" placeholder="Insert text to encode here!" size="20" />
-    <button onclick="encode()"> Encode </button>
+    <button onclick="test()"> Encode </button>
     <br>
     Output:
     <br>
@@ -59,64 +59,70 @@
 </div>
 
 <script>
-function decode() {
-    let binaryValue = String(document.querySelector("#decodeInput").value);
-    let baseTenValue = 0;
-    let place = 0;
-    let output = document.querySelector("#decodeOutput");
+    function test() {
+        let input = document.querySelector("#encodeInput").value;
+        let output = document.querySelector("#encodeOutput");
+        output.innerHTML = input;
+    }
+    
+    function decode() {
+        let binaryValue = String(document.querySelector("#decodeInput").value);
+        let baseTenValue = 0;
+        let place = 0;
+        let output = document.querySelector("#decodeOutput");
 
-    //iterate through the binary string backwards
-    for (let i = binaryValue.length - 1; i >= 0; i--) {
-        //store the bit being examined
-        let currentBit = binaryValue.charAt(i);
-        //make sure the bit is a 0 or 1
-        if (currentBit !== "0" && currentBit !== "1") {
+        //iterate through the binary string backwards
+        for (let i = binaryValue.length - 1; i >= 0; i--) {
+            //store the bit being examined
+            let currentBit = binaryValue.charAt(i);
+            //make sure the bit is a 0 or 1
+            if (currentBit !== "0" && currentBit !== "1") {
+                return "Incorrect input, please try again";
+            } else if (currentBit === "1") {
+                baseTenValue += Math.pow(2, place);
+            }
+            //increment the bit being examined
+            place++;
+        }
+
+        try {
+            // output.innerHTML = String(baseTenValue);
+            output.innerHTML = "Test";
+        } catch (e) {
             return "Incorrect input, please try again";
-        } else if (currentBit === "1") {
-            baseTenValue += Math.pow(2, place);
         }
-        //increment the bit being examined
-        place++;
     }
 
-    try {
-        // output.innerHTML = String(baseTenValue);
-        output.innerHTML = "Test";
-    } catch (e) {
-        return "Incorrect input, please try again";
-    }
-}
-
-function encode() {
-    let value = String(document.querySelector("#encodeInput").value);
-    let output = document.querySelector("#encodeOutput");
-    //make sure input is valid
-    try {
-        value = parseInt(baseTenValue);
-    } catch (e) {
-        return "Incorrect input, please try again";
-    }
-    let binaryValue = "";
-    let tempVal;
-    let tempStr = "";
-
-    //iteratively divide the input by 2
-    while (value !== 0) {
-        tempVal = value;
-        value = Math.floor(value / 2);
-        //decide if the bit added should be a 1 or a zero
-        if ((value * 2) === tempVal) {
-            tempStr = "0";
-        } else {
-            tempStr = "1";
+    function encode() {
+        let value = String(document.querySelector("#encodeInput").value);
+        let output = document.querySelector("#encodeOutput");
+        //make sure input is valid
+        try {
+            value = parseInt(baseTenValue);
+        } catch (e) {
+            return "Incorrect input, please try again";
         }
-        //add the bit to the beginning of the string
-        tempStr += binaryValue;
-        binaryValue = tempStr;
-    }
+        let binaryValue = "";
+        let tempVal;
+        let tempStr = "";
 
-    output.innerHTML = binaryValue;
-}
+        //iteratively divide the input by 2
+        while (value !== 0) {
+            tempVal = value;
+            value = Math.floor(value / 2);
+            //decide if the bit added should be a 1 or a zero
+            if ((value * 2) === tempVal) {
+                tempStr = "0";
+            } else {
+                tempStr = "1";
+            }
+            //add the bit to the beginning of the string
+            tempStr += binaryValue;
+            binaryValue = tempStr;
+        }
+
+        output.innerHTML = binaryValue;
+    }
 </script>
 
 </html>
