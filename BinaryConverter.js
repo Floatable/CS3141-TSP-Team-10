@@ -1,4 +1,5 @@
 function encode(baseTenValue) {
+    alert("Testing");
     let value = 0;
     //make sure input is valid
     try {
@@ -29,6 +30,7 @@ function encode(baseTenValue) {
 }
 
 function decode(binaryValue) {
+    alert("Testing");
     let baseTenValue = 0;
     let place = 0;
 
