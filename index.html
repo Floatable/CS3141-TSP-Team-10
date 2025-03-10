@@ -89,15 +89,15 @@
     }
 
     function encode() {
-        let baseTenValue = String(document.querySelector("#encodeInput").value);
+        let baseTenValue = document.querySelector("#encodeInput").value;
         let value = 0;
         let output = document.querySelector("#encodeOutput");
         //make sure input is valid
-        try {
-            value = parseInt(baseTenValue);
-        } catch (e) {
+        if (isNaN(parseInt(baseTenValue))) {
             output.innerHTML = "Incorrect input, please try again";
             return;
+        } else {
+            value = parseInt(baseTenValue);
         }
         let binaryValue = "";
         let tempVal;
