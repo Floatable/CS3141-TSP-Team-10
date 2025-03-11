@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <h1>C0debreaker v1.5</h1>
+    <h1>C0debreaker v1.6</h1>
     <p>Please select a cipher to begin</p>
     <br><br>
 </body>
@@ -59,15 +59,11 @@
 </div>
 
 <script>
-    document.getElementById("decodeOutput").innerHTML = "<h2>Hello World</h2>";
-</script>
-
-<script>
     function decode() {
         let binaryValue = String(document.querySelector("#decodeInput").value);
         let baseTenValue = 0;
         let place = 0;
-        let output = document.querySelector("#decodeOutput");
+        let output = document.getElementById("decodeOutput");
 
         //iterate through the binary string backwards
         for (let i = binaryValue.length - 1; i >= 0; i--) {
