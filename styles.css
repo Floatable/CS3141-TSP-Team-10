@@ -14,22 +14,25 @@ body{
 .leftColumn{
     float: left;
     width: 33.33%;
+    background-color: antiquewhite;
 }
 
 .middleColumn{
     float: left;
     width: 33.33%;
+    background-color:aquamarine;
 }
 
 .rightColumn{
     float: left;
     width: 33.33%;
+    background-color:blue;
 }
 
 .button{
     background-color: rgb(179, 25, 14);
     border-radius: 10px;
-    color: black;
+    color: green;
     border: 10px black;
     padding: 3px 15px;
 }
