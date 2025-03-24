@@ -28,7 +28,7 @@
 <!--Input/output for encoding-->
 <form>
     <input id="encodeInput" type="text" maxlength="200" placeholder="Insert text to encode here!" size="20" />
-    <input type="button" onclick="encode()" value="Encode"> </button>
+    <input type="button" onclick="hexEncode()" value="Encode"> </button>
     <br>
     Output:
     <br>
@@ -45,7 +45,7 @@
 <!--Input/output for decoding-->
 <form>
     <input id="decodeInput" type="text" maxlength="200" placeholder="Insert text to decode here!" size="20" />
-    <input type="button" onclick="decode()" value="Decode"> </button>
+    <input type="button" onclick="hexDecode()" value="Decode"> </button>
     <br>
     Output:
     <br>
@@ -59,7 +59,7 @@
 </div>
 
 <script>
-    function decode() {
+    function binDecode() {
         let binaryValue = String(document.querySelector("#decodeInput").value);
         let baseTenValue = 0;
         let place = 0;
@@ -88,7 +88,7 @@
         }
     }
 
-    function encode() {
+    function binEncode() {
         let baseTenValue = document.querySelector("#encodeInput").value;
         let value = 0;
         let output = document.querySelector("#encodeOutput");
@@ -122,12 +122,15 @@
     }
 
     function hexEncode() {
+        let input = document.querySelector("#encodeInput").value;
         let value = 0;
+        let output = document.querySelector("#encodeOutput");
         //make sure input is valid
-        try {
+        if(isNaN(parseInt(input)) || parseInt(input) < 0) {
+            output.innerHTML = "Incorrect input, please try again";
+            return;
+        } else {
             value = parseInt(input);
-        } catch (e) {
-            return "Incorrect input, please try again";
         }
         let hexValue = "";
         let tempVal;
@@ -146,6 +149,7 @@
                     tempStr = remainder.toString();
                 } else {
                     tempStr = String.fromCharCode(87 + remainder);
+                    tempStr = tempStr.toUpperCase();
                 }
             }
             //add the hex digit to the beginning of the string
@@ -153,39 +157,45 @@
             hexValue = tempStr;
         }
 
-        return hexValue;
+        output.innerHTML = hexValue;
     }
 
     function hexDecode() {
+        let input = document.querySelector("#decodeInput").value;
+        let output = document.querySelector("#decodeOutput");
         let baseTenValue = 0;
         let place = 0;
+        input = input.toString();
+        input = input.toUpperCase();
 
         //iterate through the hex string backwards
         for (let i = input.length - 1; i >= 0; i--) {
             //store the hex digit being examined
             let currentDigit = input.charAt(i);
-            //make sure the hex digit is a 0-9 or a-f
-            if (currentDigit < "0" || (currentDigit > "9" && currentDigit < "a") || currentDigit > "f") {
-                return "Incorrect input, please try again";
+            //make sure the hex digit is a 0-9 or A-F
+            if (currentDigit < "0" || (currentDigit > "9" && currentDigit < "A") || currentDigit > "F") {
+                output.innerHTML = "Incorrect input, please try again";
+                return;
             } else {
                 let digitValue = 0;
-                if (currentDigit < "a") {
+                if (currentDigit < "A") {
                     digitValue = parseInt(currentDigit);
                 } else {
-                    digitValue = currentDigit.charCodeAt(0) - 87;
+                    digitValue = currentDigit.charCodeAt(0) - 55;
                 }
-                baseTenValue += digitValue * Math.pow(16, place);
-            }
+            baseTenValue += digitValue * Math.pow(16, place);
+         }
             //increment the hex digit being examined
             place++;
         }
 
         try {
-            return String(baseTenValue);
+            output.innerHTML = String(baseTenValue);
         } catch (e) {
-            return "Incorrect input, please try again";
+            output.innerHTML = "Incorrect input, please try again";
+            return;
         }
-    }
+}
 </script>
 
 </html>
