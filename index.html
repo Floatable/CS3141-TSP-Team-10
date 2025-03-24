@@ -7,10 +7,9 @@
 </head>
 
 <body>
-    <h1>C0debreaker V2.5</h1>
-    <p>Please select a cipher to begin</p>
+    <h1>C0debreaker V2.10</h1>
     <br><br>
-</body>
+
 
 
 <div class="leftColumn">
@@ -48,16 +47,24 @@
 
 
 <div class="middleColumn">
-    <!--Dropdown for selecting a cipher-->
-    <form>
-        <select name="selectCipher">
-            <option value="Binary">Binary</option>
-            <option value="Hex">Hex</option>
-            <option value="Morse">Morse</option>
-            <option value="Caesar">Caesar</option>
-            <option value="Vigenere">Vigenere</option>
-        <br><br>
-    </form>
+    <!--Radio button for selecting a cipher-->
+    <p>Please select a cipher to begin</p>
+    <div style="text-align: left; padding-left: 160px;">
+        <input type="radio" id="Binary" name="selectedCipher" value="Binary">
+        <label for="Binary">Binary</label><br>
+        <input type="radio" id="Hex" name="selectedCipher" value="Hex">
+        <label for="Hex">Hex</label><br>
+        <input type="radio" id="Morse" name="selectedCipher" value="Morse">
+        <label for="Morse">Morse</label><br>
+        <input type="radio" id="Caesar" name="selectedCipher" value="Caesar">
+        <label for="Hex">Caesar</label><br>
+        <input type="radio" id="Vigenere" name="selectedCipher" value="Vigenere">
+        <label for="Hex">Vigenere</label><br>
+        <input type="radio" id="Affine" name="selectedCipher" value="Affine">
+        <label for="Affine">Affine</label><br>
+    </div>
+
+    <!--Binary, Hex, Morse, Caesar, Vigenere, Affine-->
 </div>
 
 <div class="rightColumn">
@@ -68,6 +75,8 @@
         Cipher description
     </p>
 </div>
+
+</body>
 
 <script>
     function binDecode() {
