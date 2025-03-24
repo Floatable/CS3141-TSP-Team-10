@@ -25,3 +25,11 @@ body{
     float: left;
     width: 33.33%;
 }
+
+.button{
+    background-color: rgb(179, 25, 14);
+    border-radius: 10px;
+    color: black;
+    border: 10px black;
+    padding: 3px 15px;
+}
