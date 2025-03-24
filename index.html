@@ -7,8 +7,7 @@
 </head>
 
 <body>
-    <h1>C0debreaker V2.5</h1>
-    <p>Please select a cipher to begin</p>
+    <h1>C0debreaker V2.6</h1>
     <br><br>
 
 
@@ -48,16 +47,12 @@
 
 
 <div class="middleColumn">
-    <!--Dropdown for selecting a cipher-->
-    <form>
-        <select name="selectCipher">
-            <option value="Binary">Binary</option>
-            <option value="Hex">Hex</option>
-            <option value="Morse">Morse</option>
-            <option value="Caesar">Caesar</option>
-            <option value="Vigenere">Vigenere</option>
-        <br><br>
-    </form>
+    <!--Radio button for selecting a cipher-->
+    <p>Please select a cipher to begin</p>
+        <input type="radio" id="Binary" name="selectedCipher" value="Binary">
+        <input type="radio" id="Hex" name="selectedCipher" value="Hex">
+
+    <!--Binary, Hex, Morse, Caesar, Vigenere, Affine-->
 </div>
 
 <div class="rightColumn">
