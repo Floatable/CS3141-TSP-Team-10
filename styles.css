@@ -14,19 +14,16 @@ body{
 .leftColumn{
     float: left;
     width: 33.33%;
-    background-color: antiquewhite;
 }
 
 .middleColumn{
     float: left;
     width: 33.33%;
-    background-color:aquamarine;
 }
 
 .rightColumn{
     float: left;
     width: 33.33%;
-    background-color:blue;
 }
 
 .button{
