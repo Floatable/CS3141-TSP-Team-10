@@ -7,14 +7,14 @@
 </head>
 
 <body>
-    <h1>C0debreaker</h1>
+    <h1>C0debreaker V2.1</h1>
     <br><br>
 
 
 
 <div class="leftColumn">
     <!--Input/output for encoding-->
-    <form>
+    <form id="encodeButtonSpace">
         <input id="encodeInput" type="text" maxlength="200" placeholder="Insert text to encode here!" size="20" />
         <input type="button" onclick="hexEncode()" value="Encode" class="button"> </button>
         <br>
@@ -82,6 +82,11 @@
     //Functions for displaying cipher data
     function binaryClicked(){
         document.getElementById("cipherNamespace").innerHTML = "Binary Cipher";
+
+        var button = document.createElement('input');
+        button.innerHTML = 'TEST BUTTON';
+        button.onclick = BinaryEncode();
+        document.appendChild(button)
         return;
     }
 
