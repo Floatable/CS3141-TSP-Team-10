@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <h1>C0debreaker V2.10</h1>
+    <h1>C0debreaker</h1>
     <br><br>
 
 
@@ -49,18 +49,18 @@
 <div class="middleColumn">
     <!--Radio button for selecting a cipher-->
     <p>Please select a cipher to begin</p>
-    <div style="text-align: left; padding-left: 160px;">
-        <input type="radio" id="Binary" name="selectedCipher" value="Binary">
+    <div style="text-align: left; padding-left: 180px;">
+        <input type="radio" id="Binary" name="selectedCipher" value="Binary" onclick="binaryClicked()">
         <label for="Binary">Binary</label><br>
-        <input type="radio" id="Hex" name="selectedCipher" value="Hex">
+        <input type="radio" id="Hex" name="selectedCipher" value="Hex" onclick="hexClicked()">
         <label for="Hex">Hex</label><br>
-        <input type="radio" id="Morse" name="selectedCipher" value="Morse">
+        <input type="radio" id="Morse" name="selectedCipher" value="Morse" onclick="morseClicked()">
         <label for="Morse">Morse</label><br>
-        <input type="radio" id="Caesar" name="selectedCipher" value="Caesar">
+        <input type="radio" id="Caesar" name="selectedCipher" value="Caesar" onclick="caesarClicked()">
         <label for="Hex">Caesar</label><br>
-        <input type="radio" id="Vigenere" name="selectedCipher" value="Vigenere">
-        <label for="Hex">Vigenere</label><br>
-        <input type="radio" id="Affine" name="selectedCipher" value="Affine">
+        <input type="radio" id="Vigenere" name="selectedCipher" value="Vigenere" onclick="vigenereClicked()">
+        <label for="Vigenere">Vigenere</label><br>
+        <input type="radio" id="Affine" name="selectedCipher" value="Affine" onclick="affineClicked()">
         <label for="Affine">Affine</label><br>
     </div>
 
@@ -68,7 +68,7 @@
 </div>
 
 <div class="rightColumn">
-    <h2>
+    <h2 id="cipherNamespace">
         [Selected Cipher]
     </h2>
     <p>
@@ -79,6 +79,38 @@
 </body>
 
 <script>
+    //Functions for displaying cipher data
+    function binaryClicked(){
+        document.getElementById("cipherNamespace").innerHTML = "Binary Cipher";
+        return;
+    }
+
+    function hexClicked(){
+        document.getElementById("cipherNamespace").innerHTML = "Hex Cipher";
+        return;
+    }
+
+    function morseClicked(){
+        document.getElementById("cipherNamespace").innerHTML = "Morse Cipher";
+        return;
+    }
+
+    function caesarClicked(){
+        document.getElementById("cipherNamespace").innerHTML = "Caesar cipher";
+        return;
+    }
+
+    function vigenereClicked(){
+        document.getElementById("cipherNamespace").innerHTML = "Vigenere Cipher";
+        return;
+    }
+
+    function affineClicked(){
+        document.getElementById("cipherNamespace").innerHTML = "Affine Cipher";
+        return;
+    }
+
+
     function binDecode() {
         let binaryValue = String(document.querySelector("#decodeInput").value);
         let baseTenValue = 0;
