@@ -13,49 +13,55 @@
 </body>
 
 
-<!--Dropdown for selecting a cipher-->
-<form>
-    <select name="selectCipher">
-        <option value="Binary">Binary</option>
-        <option value="Hex">Hex</option>
-        <option value="Morse">Morse</option>
-        <option value="Caesar">Caesar</option>
-        <option value="Vigenere">Vigenere</option>
-    </select>
-        <br><br>
-</form>
+<div clas="leftCoulumn">
+    <!--Input/output for encoding-->
+    <form>
+        <input id="encodeInput" type="text" maxlength="200" placeholder="Insert text to encode here!" size="20" />
+        <input type="button" onclick="hexEncode()" value="Encode"> </button>
+        <br>
+        Output:
+        <br>
+    </form>
 
-<!--Input/output for encoding-->
-<form>
-    <input id="encodeInput" type="text" maxlength="200" placeholder="Insert text to encode here!" size="20" />
-    <input type="button" onclick="hexEncode()" value="Encode"> </button>
-    <br>
-    Output:
-    <br>
-</form>
+    <div class="outputArea">
+        <p id="encodeOutput"> 
+            <br><br>
+        </p>
+    </div>
 
-<div class="outputArea">
-    <p id="encodeOutput">
+    <!--Input/output for decoding-->
+    <form>
+        <input id="decodeInput" type="text" maxlength="200" placeholder="Insert text to decode here!" size="20" />
+        <input type="button" onclick="hexDecode()" value="Decode"> </button>
+        <br>
+        Output:
+        <br>
+    </form>
+
+    <div class="outputArea">
+        <p id="decodeOutput">
         
-        <br><br>
-    </p>
+            <br><br>
+        </p>
+    </div>
 </div>
 
 
-<!--Input/output for decoding-->
-<form>
-    <input id="decodeInput" type="text" maxlength="200" placeholder="Insert text to decode here!" size="20" />
-    <input type="button" onclick="hexDecode()" value="Decode"> </button>
-    <br>
-    Output:
-    <br>
-</form>
-
-<div class="outputArea">
-    <p id="decodeOutput">
-        
+<div class="middleColumn">
+    <!--Dropdown for selecting a cipher-->
+    <form>
+        <select name="selectCipher">
+            <option value="Binary">Binary</option>
+            <option value="Hex">Hex</option>
+            <option value="Morse">Morse</option>
+            <option value="Caesar">Caesar</option>
+            <option value="Vigenere">Vigenere</option>
         <br><br>
-    </p>
+    </form>
+</div>
+
+<div class="rightCoulumn">
+    Cipher description
 </div>
 
 <script>
