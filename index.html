@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <h1>C0debreaker V2.1</h1>
+    <h1>C0debreaker V2.2</h1>
     <br><br>
 
 
@@ -83,10 +83,11 @@
     function binaryClicked(){
         document.getElementById("cipherNamespace").innerHTML = "Binary Cipher";
 
+        var x = document.getElementById("encodeButtonSpace");
         var button = document.createElement('input');
         button.innerHTML = 'TEST BUTTON';
         button.onclick = BinaryEncode();
-        document.appendChild(button);
+        x.appendChild(button);
         return;
     }
 
