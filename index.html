@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <h1>C0debreaker V2.10</h1>
+    <h1>C0debreaker V2.11</h1>
     <br><br>
 
 
@@ -49,8 +49,8 @@
 <div class="middleColumn">
     <!--Radio button for selecting a cipher-->
     <p>Please select a cipher to begin</p>
-    <div style="text-align: left; padding-left: 160px;">
-        <input type="radio" id="Binary" name="selectedCipher" value="Binary">
+    <div style="text-align: left; padding-left: 180px;">
+        <input type="radio" id="Binary" name="selectedCipher" value="Binary" onclick="displayCipherName()">
         <label for="Binary">Binary</label><br>
         <input type="radio" id="Hex" name="selectedCipher" value="Hex">
         <label for="Hex">Hex</label><br>
@@ -68,7 +68,7 @@
 </div>
 
 <div class="rightColumn">
-    <h2>
+    <h2 id="cipherNamespace">
         [Selected Cipher]
     </h2>
     <p>
@@ -79,6 +79,14 @@
 </body>
 
 <script>
+    //Functions for displaying cipher data
+    function displayCipherName(){
+        document.getElementById("cipherNamespace").innerHTML = "You selected Binary cipher";
+        return;
+    }
+
+
+
     function binDecode() {
         let binaryValue = String(document.querySelector("#decodeInput").value);
         let baseTenValue = 0;
