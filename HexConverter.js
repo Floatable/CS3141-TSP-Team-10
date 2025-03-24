@@ -23,6 +23,7 @@ function hexEncode(input) {
                 tempStr = remainder.toString();
             } else {
                 tempStr = String.fromCharCode(87 + remainder);
+                tempStr = tempStr.toUpperCase();
             }
         }
         //add the hex digit to the beginning of the string
@@ -36,20 +37,22 @@ function hexEncode(input) {
 function hexDecode(input) {
     let baseTenValue = 0;
     let place = 0;
+    input = input.toString();
+    input = input.toUpperCase();
 
     //iterate through the hex string backwards
     for (let i = input.length - 1; i >= 0; i--) {
         //store the hex digit being examined
         let currentDigit = input.charAt(i);
-        //make sure the hex digit is a 0-9 or a-f
-        if (currentDigit < "0" || (currentDigit > "9" && currentDigit < "a") || currentDigit > "f") {
+        //make sure the hex digit is a 0-9 or A-F
+        if (currentDigit < "0" || (currentDigit > "9" && currentDigit < "A") || currentDigit > "F") {
             return "Incorrect input, please try again";
         } else {
             let digitValue = 0;
-            if (currentDigit < "a") {
+            if (currentDigit < "A") {
                 digitValue = parseInt(currentDigit);
             } else {
-                digitValue = currentDigit.charCodeAt(0) - 87;
+                digitValue = currentDigit.charCodeAt(0) - 55;
             }
             baseTenValue += digitValue * Math.pow(16, place);
         }
@@ -63,3 +66,22 @@ function hexDecode(input) {
         return "Incorrect input, please try again";
     }
 }
+
+function main() {
+    console.log("Testing hexEncode and hexDecode");
+    console.log(" ");
+    console.assert(hexEncode(100) === "64", "Expected 64, got " + hexEncode(100));
+    console.log(" ");
+    console.assert(hexEncode(256) === "100", "Expected 100, got " + hexEncode(256));
+    console.log(" ");
+    console.assert(hexEncode(15) === "F", "Expected F, got " + hexEncode(15)); 
+    console.log(" ");
+    console.assert(hexDecode(64) === "100", "Expected 100, got " + hexDecode(64));
+    console.log(" ");
+    console.assert(hexDecode(100) === "256", "Expected 256, got " + hexDecode(100));
+    console.log(" ");
+    console.assert(hexDecode("F") === "15", "Expected 15, got " + hexDecode("F"));
+    console.log("Tests complete");   
+}
+
+main();
