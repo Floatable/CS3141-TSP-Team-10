@@ -1,4 +1,4 @@
-class CeasarCipher {
+class VigenereCipher {
     // INSTANCE VARIABLES
     keyList; 
     cipherTable;
@@ -97,7 +97,7 @@ class CeasarCipher {
      */
     static main() {
         // Testing only works if using VM argument -ea
-        const self = new CeasarCipher('H'.charCodeAt(0), "BABBAGE"); // Use CeasarCipher here
+        const self = new VigenereCipher('H'.charCodeAt(0), "BABBAGE"); // Use VigenereCipher here
         console.log(" ");
         console.assert("PHXXF MQYBPKNJ" === self.encode("HAPPY BIRTHDAY"));
         console.log(" ");    
@@ -106,5 +106,5 @@ class CeasarCipher {
 }
 
 // Call the main method to run the tests
-CeasarCipher.main();
+VigenereCipher.main();
 

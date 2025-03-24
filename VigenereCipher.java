@@ -28,6 +28,8 @@ public class VigenereCipher {
                 currentKeyChar = 0;
 			}
 
+            System.out.println("current char: " + currentChar + ", row + 65: " + (row + 65));
+
             //Checks for spaces
             if (messageList[currentChar] == (char)32) {
 			    result = result + " ";
@@ -51,6 +53,7 @@ public class VigenereCipher {
 					//adds char to result and resets loops
 					if (((int)keyList[currentKeyChar] - 65) == col) {
 
+                        System.out.println("resulting char: " + cipherTable[row][col]);
 						result = result + cipherTable[row][col];
 						
 						row = -1;
@@ -77,11 +80,6 @@ public class VigenereCipher {
 		return result;
 	}
 
-	/**
-	* Given the ciphertext message, return the plaintext message
-	* @param message - the message the user wants to decrypt
-	* @return result - the decrypted message
-	*/
 	String decode( String message ) {
 	
 		//Convert message to array of chars
@@ -102,7 +100,7 @@ public class VigenereCipher {
                     currentKeyChar = 0;
                 }
 
-                //System.out.println("Row: " + row + ", keyList[currentKeyChar] - 65: " + (int)keyList[currentKeyChar]);
+                System.out.println("Row: " + row + ", keyList[currentKeyChar] - 65: " + (int)keyList[currentKeyChar]);
 
 				if (currentChar == (char)32) {
 					result = result + " ";
@@ -137,13 +135,9 @@ public class VigenereCipher {
 	
 	}
 
-	/**
-	* Constructs the cipherTable[][] array using the inital table character
-	* @param code
-	* @param key
-	*/
 	public VigenereCipher( char initialTableCharacter, String keyword ) {
 
+        initialTableCharacter = Character.toUpperCase(initialTableCharacter);
 		this.initialTableCharacter = initialTableCharacter;
 		this.keyword = keyword.toUpperCase();
 
@@ -155,30 +149,29 @@ public class VigenereCipher {
 		//Cycles through array rows
 		for (int row = 0; row <= 25; row++) {	
 			//Cycles through array columns
-                        for (int col = 0; col <= 25; col++) {
+            for (int col = 0; col <= 25; col++) {
 
 				//Creates a variable that to be put into the array
-                                int charBeingSet = (col + offset + 
-						(int)initialTableCharacter);
+                int charBeingSet = (col + offset + (int)initialTableCharacter);
 
 				//Resets to 'A' when loop reaches 'Z'
-                                while ((charBeingSet) > 90) {
+                while ((charBeingSet) > 90) {
 					charBeingSet = charBeingSet - 26;
 				}
 
 				//Sets the current spot in the array to the correct letter
 				cipherTable[row][col] = (char)charBeingSet;
 
-                        }
+            }
 			//Increments the starting char in each row by one
-                        offset++;
-                }
+            offset++;
+        }
 
 		//sets instance variables to cipher table and the key array
 		this.cipherTable = cipherTable;
 		this.keyList = keyList;
 
-		}
+	}
  
 	/**
 	* Runs the constructor to create the cipherTable[][] array, and 
@@ -199,7 +192,7 @@ public class VigenereCipher {
             VigenereCipher self = new VigenereCipher (character, keyword);
 
             System.out.println("Encoded message: " + self.encode(message));
-            System.out.println("Decoded message: " + self.decode(message));
+            //System.out.println("Decoded message: " + self.decode(message));
         }
 
 		System.out.println();
