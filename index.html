@@ -433,6 +433,7 @@
 
     function vigenereEncode() {
         let message = document.querySelector("#encodeInput").value;
+        constructor(message, "KEY");
         let output = document.querySelector("#encodeOutput");
         let result = "";
         // Loop through each character in the message
@@ -451,6 +452,7 @@
     }
     function vigenereDecode() {
         let message = document.querySelector("#decodeInput").value;
+        constructor(message, "KEY");
         let output = document.querySelector("#decodeOutput");
         const messageList = message.split('');  
         let result = "";
