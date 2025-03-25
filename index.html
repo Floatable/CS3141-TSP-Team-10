@@ -14,13 +14,14 @@
 
 <div class="leftColumn">
     <!--Input/output for encoding-->
-    <form>
+    <form id="encodeButtonSpace">
         <input id="encodeInput" type="text" maxlength="200" placeholder="Insert text to encode here!" size="20" />
-        <input type="button" onclick="hexEncode()" value="Encode" class="button"> </button>
-        <br>
-        Output:
-        <br>
+        <input type="button" value="Encode" class="button" id="encodeButton" onclick="binEncode()">
     </form>
+
+    <br>
+    Output:
+    <br>
 
     <div class="outputArea">
         <p id="encodeOutput"> 
@@ -29,13 +30,14 @@
     </div>
 
     <!--Input/output for decoding-->
-    <form>
+    <form id="decodeButtonSpace">
         <input id="decodeInput" type="text" maxlength="200" placeholder="Insert text to decode here!" size="20" />
-        <input type="button" onclick="hexDecode()" value="Decode" class="button"> </button>
-        <br>
-        Output:
-        <br>
+        <input type="button" onclick="binDecode()" value="Decode" class="button" id="decodeButton"> </button>
     </form>
+
+    <br>
+    Output:
+    <br>
 
     <div class="outputArea">
         <p id="decodeOutput">
@@ -69,7 +71,7 @@
 
 <div class="rightColumn">
     <h2 id="cipherNamespace">
-        [Selected Cipher]
+        Binary Cipher
     </h2>
     <p>
         Cipher description
@@ -79,37 +81,190 @@
 </body>
 
 <script>
-    //Functions for displaying cipher data
+
+    // DISPLAY CIPHER FUNCTIONS + BUTTON MAPPING
+
     function binaryClicked(){
         document.getElementById("cipherNamespace").innerHTML = "Binary Cipher";
+
+        //Change encode button
+        var x = document.getElementById("encodeButtonSpace");
+        var button1 = document.createElement('input');
+        button1.setAttribute("type", "button");
+        button1.setAttribute("value", "Encode");
+        button1.setAttribute("class", "button");
+        button1.setAttribute("onclick", "binEncode()");
+
+        document.getElementById("encodeButton").remove();
+        button1.setAttribute("id", "encodeButton");
+        x.appendChild(button1);
+
+        //Change decode button
+        var y = document.getElementById("decodeButtonSpace");
+        var button2 = document.createElement('input');
+        button2.setAttribute("type", "button");
+        button2.setAttribute("value", "Decode");
+        button2.setAttribute("class", "button");
+        button2.setAttribute("onclick", "binDecode()");
+
+        document.getElementById("decodeButton").remove();
+        button2.setAttribute("id", "decodeButton");
+        y.appendChild(button2);
+
         return;
     }
 
     function hexClicked(){
         document.getElementById("cipherNamespace").innerHTML = "Hex Cipher";
+
+        //Change encode button
+        var x = document.getElementById("encodeButtonSpace");
+        var button1 = document.createElement('input');
+        button1.setAttribute("type", "button");
+        button1.setAttribute("value", "Encode");
+        button1.setAttribute("class", "button");
+        button1.setAttribute("onclick", "hexEncode()");
+
+        document.getElementById("encodeButton").remove();
+        button1.setAttribute("id", "encodeButton");
+        x.appendChild(button1);
+
+        //Change decode button
+        var y = document.getElementById("decodeButtonSpace");
+        var button2 = document.createElement('input');
+        button2.setAttribute("type", "button");
+        button2.setAttribute("value", "Decode");
+        button2.setAttribute("class", "button");
+        button2.setAttribute("onclick", "hexDecode()");
+
+        document.getElementById("decodeButton").remove();
+        button2.setAttribute("id", "decodeButton");
+        y.appendChild(button2);
+
         return;
     }
 
     function morseClicked(){
         document.getElementById("cipherNamespace").innerHTML = "Morse Cipher";
+
+        //Change encode button
+        var x = document.getElementById("encodeButtonSpace");
+        var button1 = document.createElement('input');
+        button1.setAttribute("type", "button");
+        button1.setAttribute("value", "Encode");
+        button1.setAttribute("class", "button");
+        button1.setAttribute("onclick", "morseEncode()");
+
+        document.getElementById("encodeButton").remove();
+        button1.setAttribute("id", "encodeButton");
+        x.appendChild(button1);
+
+        //Change decode button
+        var y = document.getElementById("decodeButtonSpace");
+        var button2 = document.createElement('input');
+        button2.setAttribute("type", "button");
+        button2.setAttribute("value", "Decode");
+        button2.setAttribute("class", "button");
+        button2.setAttribute("onclick", "morseDecode()");
+
+        document.getElementById("decodeButton").remove();
+        button2.setAttribute("id", "decodeButton");
+        y.appendChild(button2);
+
         return;
     }
 
     function caesarClicked(){
         document.getElementById("cipherNamespace").innerHTML = "Caesar cipher";
+
+        //Change encode button
+        var x = document.getElementById("encodeButtonSpace");
+        var button1 = document.createElement('input');
+        button1.setAttribute("type", "button");
+        button1.setAttribute("value", "Encode");
+        button1.setAttribute("class", "button");
+        button1.setAttribute("onclick", "caesarEncode()");
+
+        document.getElementById("encodeButton").remove();
+        button1.setAttribute("id", "encodeButton");
+        x.appendChild(button1);
+
+        //Change decode button
+        var y = document.getElementById("decodeButtonSpace");
+        var button2 = document.createElement('input');
+        button2.setAttribute("type", "button");
+        button2.setAttribute("value", "Decode");
+        button2.setAttribute("class", "button");
+        button2.setAttribute("onclick", "caesarDecode()");
+
+        document.getElementById("decodeButton").remove();
+        button2.setAttribute("id", "decodeButton");
+        y.appendChild(button2);
+
         return;
     }
 
     function vigenereClicked(){
         document.getElementById("cipherNamespace").innerHTML = "Vigenere Cipher";
+
+        //Change encode button
+        var x = document.getElementById("encodeButtonSpace");
+        var button1 = document.createElement('input');
+        button1.setAttribute("type", "button");
+        button1.setAttribute("value", "Encode");
+        button1.setAttribute("class", "button");
+        button1.setAttribute("onclick", "vigenereEncode()");
+
+        document.getElementById("encodeButton").remove();
+        button1.setAttribute("id", "encodeButton");
+        x.appendChild(button1);
+
+        //Change decode button
+        var y = document.getElementById("decodeButtonSpace");
+        var button2 = document.createElement('input');
+        button2.setAttribute("type", "button");
+        button2.setAttribute("value", "Decode");
+        button2.setAttribute("class", "button");
+        button2.setAttribute("onclick", "vigenereDecode()");
+
+        document.getElementById("decodeButton").remove();
+        button2.setAttribute("id", "decodeButton");
+        y.appendChild(button2);
+
         return;
     }
 
     function affineClicked(){
         document.getElementById("cipherNamespace").innerHTML = "Affine Cipher";
+
+        //Change encode button
+        var x = document.getElementById("encodeButtonSpace");
+        var button1 = document.createElement('input');
+        button1.setAttribute("type", "button");
+        button1.setAttribute("value", "Encode");
+        button1.setAttribute("class", "button");
+        button1.setAttribute("onclick", "affineEncode()");
+
+        document.getElementById("encodeButton").remove();
+        button1.setAttribute("id", "encodeButton");
+        x.appendChild(button1);
+
+        //Change decode button
+        var y = document.getElementById("decodeButtonSpace");
+        var button2 = document.createElement('input');
+        button2.setAttribute("type", "button");
+        button2.setAttribute("value", "Decode");
+        button2.setAttribute("class", "button");
+        button2.setAttribute("onclick", "affineDecode()");
+
+        document.getElementById("decodeButton").remove();
+        button2.setAttribute("id", "decodeButton");
+        y.appendChild(button2);
+
         return;
     }
 
+    // BINARY FUNCTIONS
 
     function binDecode() {
         let binaryValue = String(document.querySelector("#decodeInput").value);
@@ -172,6 +327,8 @@
 
         output.innerHTML = binaryValue;
     }
+
+    // HEX FUNCTIONS
 
     function hexEncode() {
         let input = document.querySelector("#encodeInput").value;
@@ -247,7 +404,90 @@
             output.innerHTML = "Incorrect input, please try again";
             return;
         }
-}
+    }
+
+    // MORSE FUNCTIONS
+
+    const MORSE_CODE = Object.assign({}, ..."ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ".split('').map((char, i) => ({
+        [char]: ['.-', '-...', '-.-.', '-..', '.', '..-.', '--.', '....', '..', '.---',
+        '-.-', '.-..', '--', '-.', '---', '.--.', '--.-', '.-.', '...', '-',
+        '..-', '...-', '.--', '-..-', '-.--', '--..', '-----', '.----', '..---',
+        '...--', '....-', '.....', '-....', '--...', '---..', '----.', '/'][i]
+    })));
+
+    const REVERSE_MORSE_CODE = Object.fromEntries(Object.entries(MORSE_CODE).map(([k, v]) => [v, k]));
+
+    function morseEncode() {
+        let text = document.querySelector("#encodeInput").value;
+        let output = document.querySelector("#encodeOutput");
+        output.innerHTML = text.toString().toUpperCase().split('').map(char => MORSE_CODE[char] || '').join(' ');
+    }
+
+    function morseDecode() {
+        let morse = document.querySelector("#decodeInput").value;
+        let output = document.querySelector("#decodeOutput");
+        output.innerHTML = morse.split(' ').map(code => REVERSE_MORSE_CODE[code] || '').join('');
+    }
+    
+    // VIGENERE FUNCTIONS
+
+    // AFFINE FUNCTIONS
+
+    function modInverse(a, m) {
+        for (let i = 1; i < m; i++) {
+            if ((a * i) % m === 1) {
+                return i;
+            }
+        }      
+        return null;
+    }
+
+    function affineEncode() {
+        let value = document.querySelector("#encodeInput").value;
+        let output = document.querySelector("#encodeOutput");
+        let a = 5, b = 8, m = 26; // Example keys, ensure 'a' is coprime with 'm'
+        let encryptedText = "";
+
+        for (let char of value) {
+            if (char.match(/[a-zA-Z]/)) {
+                let isUpperCase = char === char.toUpperCase();
+                let x = char.toLowerCase().charCodeAt(0) - 97;
+                let encryptedChar = String.fromCharCode(((a * x + b) % m) + 97);
+                encryptedText += isUpperCase ? encryptedChar.toUpperCase() : encryptedChar;
+            } else {
+                encryptedText += char;
+            }
+        }
+        output.innerHTML = encryptedText;
+    }
+
+    function affineDecode() {
+        let value = document.querySelector("#decodeInput").value;
+        let output = document.querySelector("#decodeOutput");
+        let a = 5, b = 8, m = 26;
+        let a_inv = modInverse(a, m);
+        if (a_inv === null) {
+            output.innerHTML = "Invalid key, 'a' must be coprime with 26";
+            return;
+        }
+
+        let decryptedText = "";
+        for (let char of value) {
+            if (char.match(/[a-zA-Z]/)) {
+                let isUpperCase = char === char.toUpperCase();
+                let y = char.toLowerCase().charCodeAt(0) - 97;
+                let decryptedChar = String.fromCharCode(((a_inv * (y - b + m)) % m) + 97);
+                decryptedText += isUpperCase ? decryptedChar.toUpperCase() : decryptedChar;
+            } else {
+                decryptedText += char;
+            }
+        }
+        output.innerHTML = decryptedText;
+    }
+
+    // CAESAR FUNCTIONS
+
+
 </script>
 
 </html>
