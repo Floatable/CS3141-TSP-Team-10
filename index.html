@@ -81,7 +81,9 @@
 </body>
 
 <script>
-    //Functions for displaying cipher data
+
+    // DISPLAY CIPHER FUNCTIONS + BUTTON MAPPING
+
     function binaryClicked(){
         document.getElementById("cipherNamespace").innerHTML = "Binary Cipher";
 
@@ -262,6 +264,7 @@
         return;
     }
 
+    // BINARY FUNCTIONS
 
     function binDecode() {
         let binaryValue = String(document.querySelector("#decodeInput").value);
@@ -324,6 +327,8 @@
 
         output.innerHTML = binaryValue;
     }
+
+    // HEX FUNCTIONS
 
     function hexEncode() {
         let input = document.querySelector("#encodeInput").value;
@@ -399,7 +404,90 @@
             output.innerHTML = "Incorrect input, please try again";
             return;
         }
-}
+    }
+
+    // MORSE FUNCTIONS
+
+    const MORSE_CODE = Object.assign({}, ..."ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ".split('').map((char, i) => ({
+        [char]: ['.-', '-...', '-.-.', '-..', '.', '..-.', '--.', '....', '..', '.---',
+        '-.-', '.-..', '--', '-.', '---', '.--.', '--.-', '.-.', '...', '-',
+        '..-', '...-', '.--', '-..-', '-.--', '--..', '-----', '.----', '..---',
+        '...--', '....-', '.....', '-....', '--...', '---..', '----.', '/'][i]
+    })));
+
+    const REVERSE_MORSE_CODE = Object.fromEntries(Object.entries(MORSE_CODE).map(([k, v]) => [v, k]));
+
+    function morseEncode() {
+        let text = document.querySelector("#encodeInput").value;
+        let output = document.querySelector("#encodeOutput");
+        output.innerHTML = text.toString().toUpperCase().split('').map(char => MORSE_CODE[char] || '').join(' ');
+    }
+
+    function morseDecode() {
+        let morse = document.querySelector("#decodeInput").value;
+        let output = document.querySelector("#decodeOutput");
+        output.innerHTML = morse.split(' ').map(code => REVERSE_MORSE_CODE[code] || '').join('');
+    }
+    
+    // VIGENERE FUNCTIONS
+
+    // AFFINE FUNCTIONS
+
+    function modInverse(a, m) {
+        for (let i = 1; i < m; i++) {
+            if ((a * i) % m === 1) {
+                return i;
+            }
+        }      
+        return null;
+    }
+
+    function affineEncode() {
+        let value = document.querySelector("#encodeInput").value;
+        let output = document.querySelector("#encodeOutput");
+        let a = 5, b = 8, m = 26; // Example keys, ensure 'a' is coprime with 'm'
+        let encryptedText = "";
+
+        for (let char of value) {
+            if (char.match(/[a-zA-Z]/)) {
+                let isUpperCase = char === char.toUpperCase();
+                let x = char.toLowerCase().charCodeAt(0) - 97;
+                let encryptedChar = String.fromCharCode(((a * x + b) % m) + 97);
+                encryptedText += isUpperCase ? encryptedChar.toUpperCase() : encryptedChar;
+            } else {
+                encryptedText += char;
+            }
+        }
+        output.innerHTML = encryptedText;
+    }
+
+    function affineDecode() {
+        let value = document.querySelector("#decodeInput").value;
+        let output = document.querySelector("#decodeOutput");
+        let a = 5, b = 8, m = 26;
+        let a_inv = modInverse(a, m);
+        if (a_inv === null) {
+            output.innerHTML = "Invalid key, 'a' must be coprime with 26";
+            return;
+        }
+
+        let decryptedText = "";
+        for (let char of value) {
+            if (char.match(/[a-zA-Z]/)) {
+                let isUpperCase = char === char.toUpperCase();
+                let y = char.toLowerCase().charCodeAt(0) - 97;
+                let decryptedChar = String.fromCharCode(((a_inv * (y - b + m)) % m) + 97);
+                decryptedText += isUpperCase ? decryptedChar.toUpperCase() : decryptedChar;
+            } else {
+                decryptedText += char;
+            }
+        }
+        output.innerHTML = decryptedText;
+    }
+
+    // CAESAR FUNCTIONS
+
+
 </script>
 
 </html>
