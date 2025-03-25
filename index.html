@@ -431,9 +431,6 @@
     
     // VIGENERE FUNCTIONS
 
-    keyList; 
-    cipherTable;
-
     function vigenereEncode() {
         let message = document.querySelector("#encodeInput").value;
         let output = document.querySelector("#encodeOutput");
@@ -452,7 +449,6 @@
         }
         output.innerHTML = result;
     }
-
     function vigenereDecode() {
         let message = document.querySelector("#decodeInput").value;
         let output = document.querySelector("#decodeOutput");
@@ -503,7 +499,7 @@
                 }
             }   
         }
-    }
+    }   
 
     // AFFINE FUNCTIONS
 
@@ -560,6 +556,96 @@
     }
 
     // CAESAR FUNCTIONS
+
+    function caesarEncode() {
+        //initialize the output
+        let input = document.querySelector("#encodeInput").value;
+        let key = 5;
+        let result = document.querySelector("#encodeOutput");
+        let output = "";
+        let isLetter = false;
+        input = input.toLowerCase();
+        //convert the input string to an array of chars
+        const inputList = Array.from(input);
+
+        //iterate through the array of chars
+        for (let i = 0; i < inputList.length; i++) {
+            //find the current character as an int
+            let updatedChar = inputList[i].charCodeAt(0);
+            if (updatedChar >= 97 && updatedChar <= 122) {
+                isLetter = true;
+            } else if(updatedChar >= 48 && updatedChar <= 57) {
+                isLetter = false;
+            } else {
+                result.innerHTML = "Incorrect input, please try again";
+                return;
+            }
+            updatedChar += key;
+            //loop back around to "a" if the loop surpasses the end of the alphabet
+            if (isLetter && updatedChar >= 123) {
+                updatedChar -= 26;
+            //loop back around to "0" if the loop surpasses the end of the numbers
+            } else if(!isLetter && updatedChar >= 58) {
+                updatedChar -= 10;
+            }
+
+            //add a space when necessary
+            if (inputList[i] === ' ') {
+                output += " ";
+            }
+            //otherwise, update the output
+            else {
+                output += String.fromCharCode(updatedChar);
+            }
+        }
+
+        result.innerHTML = output;
+    }
+
+    function caesarDecode() {
+        //initialize the output
+        let input = document.querySelector("#decodeInput").value;
+        let result = document.querySelector("#decodeOutput");
+        let key = 5;
+        let output = "";
+        let isLetter = false;
+        input = input.toLowerCase();
+        //convert the input string to an array of chars
+        const inputList = Array.from(input);
+
+        //iterate through the array of chars
+        for (let i = 0; i < inputList.length; i++) {
+            //find the current character as an int
+            let updatedChar = inputList[i].charCodeAt(0);
+            if (updatedChar >= 97 && updatedChar <= 122) {
+                isLetter = true;
+            } else if(updatedChar >= 48 && updatedChar <= 57) {
+                isLetter = false;
+            } else {
+                result.innerHTML = "Incorrect input, please try again";
+                return;
+            }
+            updatedChar -= key;
+            //loop back around to "z" if the loop surpasses the end of the alphabet
+            if (isLetter && updatedChar <= 96) {
+                updatedChar += 26;
+            //loop back around to "9" if the loop surpasses the end of the numbers
+            } else if(!isLetter && updatedChar <= 47) {
+                updatedChar += 10;
+            }
+
+            //add a space when necessary
+            if (inputList[i] === ' ') {
+                output += " ";
+            }
+            //otherwise, update the output
+            else {
+                output += String.fromCharCode(updatedChar);
+            }
+        }
+
+        result.innerHTML = output;
+    }
 
 
 </script>
