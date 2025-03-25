@@ -81,7 +81,9 @@
 </body>
 
 <script>
-    //Functions for displaying cipher data
+
+    // DISPLAY CIPHER FUNCTIONS + BUTTON MAPPING
+
     function binaryClicked(){
         document.getElementById("cipherNamespace").innerHTML = "Binary Cipher";
 
@@ -262,6 +264,7 @@
         return;
     }
 
+    // BINARY FUNCTIONS
 
     function binDecode() {
         let binaryValue = String(document.querySelector("#decodeInput").value);
@@ -324,6 +327,8 @@
 
         output.innerHTML = binaryValue;
     }
+
+    // HEX FUNCTIONS
 
     function hexEncode() {
         let input = document.querySelector("#encodeInput").value;
@@ -399,7 +404,252 @@
             output.innerHTML = "Incorrect input, please try again";
             return;
         }
-}
+    }
+
+    // MORSE FUNCTIONS
+
+    const MORSE_CODE = Object.assign({}, ..."ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ".split('').map((char, i) => ({
+        [char]: ['.-', '-...', '-.-.', '-..', '.', '..-.', '--.', '....', '..', '.---',
+        '-.-', '.-..', '--', '-.', '---', '.--.', '--.-', '.-.', '...', '-',
+        '..-', '...-', '.--', '-..-', '-.--', '--..', '-----', '.----', '..---',
+        '...--', '....-', '.....', '-....', '--...', '---..', '----.', '/'][i]
+    })));
+
+    const REVERSE_MORSE_CODE = Object.fromEntries(Object.entries(MORSE_CODE).map(([k, v]) => [v, k]));
+
+    function morseEncode() {
+        let text = document.querySelector("#encodeInput").value;
+        let output = document.querySelector("#encodeOutput");
+        output.innerHTML = text.toString().toUpperCase().split('').map(char => MORSE_CODE[char] || '').join(' ');
+    }
+
+    function morseDecode() {
+        let morse = document.querySelector("#decodeInput").value;
+        let output = document.querySelector("#decodeOutput");
+        output.innerHTML = morse.split(' ').map(code => REVERSE_MORSE_CODE[code] || '').join('');
+    }
+    
+    // VIGENERE FUNCTIONS
+
+    function vigenereEncode() {
+        let message = document.querySelector("#encodeInput").value;
+        constructor(message, "KEY");
+        let output = document.querySelector("#encodeOutput");
+        let result = "";
+        // Loop through each character in the message
+        for (let l = 0; l < message.length; l++) {
+            const messageChar = message.charAt(l);
+            const keyIndex = l % this.keyList.length;
+            const keyChar = this.keyList[keyIndex];
+            if ('A' <= messageChar && messageChar <= 'Z') {
+                // Encode based on the cipher table
+                result += this.cipherTable[keyChar.charCodeAt(0) - 'A'.charCodeAt(0)][messageChar.charCodeAt(0) - 'A'.charCodeAt(0)];
+            } else {
+                result += messageChar;
+            }
+        }
+        output.innerHTML = result;
+    }
+    function vigenereDecode() {
+        let message = document.querySelector("#decodeInput").value;
+        constructor(message, "KEY");
+        let output = document.querySelector("#decodeOutput");
+        const messageList = message.split('');  
+        let result = "";
+        let currKeyChar = 0;
+        let tChar = 0;
+        for (const currChar of messageList) {
+            for (let row = 0; row <= 25; row++) { 
+                if (currKeyChar === this.keyList.length) {
+                    currKeyChar = 0;
+                }
+                if (currChar === ' ') {
+                    result += " ";
+                    row = 0;
+                    currKeyChar++;
+                } else if (currChar === this.cipherTable[row][this.keyList[currKeyChar].charCodeAt(0) - 65]) {
+                    tChar = row + 65;
+                    if (tChar > 90) {
+                        tChar -= 26;
+                    }
+                    result += String.fromCharCode(tChar);
+                    row = 0;
+                    currKeyChar++;
+                    break;
+                }
+            }
+        }
+        output.innerHTML = result.toUpperCase();
+    }
+
+    function constructor(code, key) {
+        this.cipherTable = Array.from({ length: 26 }, () => Array(26).fill('')); // Create a 26x26 cipher table
+        this.keyList = key.split(''); // Convert key to a char array
+        code -= 2; // Adjust code for starting point
+        for (let i = 0; i < this.cipherTable.length; i++) {
+            let k = 65; // Start from 'A'
+            code += 1;
+            for (let j = 0; j < this.cipherTable[i].length; j++) {
+                if (k <= 90 && k >= 64) {
+                    k++;
+                    if (code < 90) {
+                        code++;
+                    } else {
+                        code -= 25;
+                    }
+                    this.cipherTable[i][j] = String.fromCharCode(code);
+                }
+            }   
+        }
+    }   
+
+    // AFFINE FUNCTIONS
+
+    function modInverse(a, m) {
+        for (let i = 1; i < m; i++) {
+            if ((a * i) % m === 1) {
+                return i;
+            }
+        }      
+        return null;
+    }
+
+    function affineEncode() {
+        let value = document.querySelector("#encodeInput").value;
+        let output = document.querySelector("#encodeOutput");
+        let a = 5, b = 8, m = 26; // Example keys, ensure 'a' is coprime with 'm'
+        let encryptedText = "";
+
+        for (let char of value) {
+            if (char.match(/[a-zA-Z]/)) {
+                let isUpperCase = char === char.toUpperCase();
+                let x = char.toLowerCase().charCodeAt(0) - 97;
+                let encryptedChar = String.fromCharCode(((a * x + b) % m) + 97);
+                encryptedText += isUpperCase ? encryptedChar.toUpperCase() : encryptedChar;
+            } else {
+                encryptedText += char;
+            }
+        }
+        output.innerHTML = encryptedText;
+    }
+
+    function affineDecode() {
+        let value = document.querySelector("#decodeInput").value;
+        let output = document.querySelector("#decodeOutput");
+        let a = 5, b = 8, m = 26;
+        let a_inv = modInverse(a, m);
+        if (a_inv === null) {
+            output.innerHTML = "Invalid key, 'a' must be coprime with 26";
+            return;
+        }
+
+        let decryptedText = "";
+        for (let char of value) {
+            if (char.match(/[a-zA-Z]/)) {
+                let isUpperCase = char === char.toUpperCase();
+                let y = char.toLowerCase().charCodeAt(0) - 97;
+                let decryptedChar = String.fromCharCode(((a_inv * (y - b + m)) % m) + 97);
+                decryptedText += isUpperCase ? decryptedChar.toUpperCase() : decryptedChar;
+            } else {
+                decryptedText += char;
+            }
+        }
+        output.innerHTML = decryptedText;
+    }
+
+    // CAESAR FUNCTIONS
+
+    function caesarEncode() {
+        //initialize the output
+        let input = document.querySelector("#encodeInput").value;
+        let key = 5;
+        let result = document.querySelector("#encodeOutput");
+        let output = "";
+        let isLetter = false;
+        input = input.toLowerCase();
+        //convert the input string to an array of chars
+        const inputList = Array.from(input);
+
+        //iterate through the array of chars
+        for (let i = 0; i < inputList.length; i++) {
+            //find the current character as an int
+            let updatedChar = inputList[i].charCodeAt(0);
+            if (updatedChar >= 97 && updatedChar <= 122) {
+                isLetter = true;
+            } else if(updatedChar >= 48 && updatedChar <= 57) {
+                isLetter = false;
+            } else {
+                result.innerHTML = "Incorrect input, please try again";
+                return;
+            }
+            updatedChar += key;
+            //loop back around to "a" if the loop surpasses the end of the alphabet
+            if (isLetter && updatedChar >= 123) {
+                updatedChar -= 26;
+            //loop back around to "0" if the loop surpasses the end of the numbers
+            } else if(!isLetter && updatedChar >= 58) {
+                updatedChar -= 10;
+            }
+
+            //add a space when necessary
+            if (inputList[i] === ' ') {
+                output += " ";
+            }
+            //otherwise, update the output
+            else {
+                output += String.fromCharCode(updatedChar);
+            }
+        }
+
+        result.innerHTML = output;
+    }
+
+    function caesarDecode() {
+        //initialize the output
+        let input = document.querySelector("#decodeInput").value;
+        let result = document.querySelector("#decodeOutput");
+        let key = 5;
+        let output = "";
+        let isLetter = false;
+        input = input.toLowerCase();
+        //convert the input string to an array of chars
+        const inputList = Array.from(input);
+
+        //iterate through the array of chars
+        for (let i = 0; i < inputList.length; i++) {
+            //find the current character as an int
+            let updatedChar = inputList[i].charCodeAt(0);
+            if (updatedChar >= 97 && updatedChar <= 122) {
+                isLetter = true;
+            } else if(updatedChar >= 48 && updatedChar <= 57) {
+                isLetter = false;
+            } else {
+                result.innerHTML = "Incorrect input, please try again";
+                return;
+            }
+            updatedChar -= key;
+            //loop back around to "z" if the loop surpasses the end of the alphabet
+            if (isLetter && updatedChar <= 96) {
+                updatedChar += 26;
+            //loop back around to "9" if the loop surpasses the end of the numbers
+            } else if(!isLetter && updatedChar <= 47) {
+                updatedChar += 10;
+            }
+
+            //add a space when necessary
+            if (inputList[i] === ' ') {
+                output += " ";
+            }
+            //otherwise, update the output
+            else {
+                output += String.fromCharCode(updatedChar);
+            }
+        }
+
+        result.innerHTML = output;
+    }
+
+
 </script>
 
 </html>
