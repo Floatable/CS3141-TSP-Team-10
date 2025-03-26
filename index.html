@@ -431,77 +431,43 @@
     
     // VIGENERE FUNCTIONS
 
+    let key = "BABBAGE";
+
     function vigenereEncode() {
         let message = document.querySelector("#encodeInput").value;
-        constructor(message, "KEY");
         let output = document.querySelector("#encodeOutput");
-        let result = "";
-        // Loop through each character in the message
-        for (let l = 0; l < message.length; l++) {
-            const messageChar = message.charAt(l);
-            const keyIndex = l % this.keyList.length;
-            const keyChar = this.keyList[keyIndex];
-            if ('A' <= messageChar && messageChar <= 'Z') {
-                // Encode based on the cipher table
-                result += this.cipherTable[keyChar.charCodeAt(0) - 'A'.charCodeAt(0)][messageChar.charCodeAt(0) - 'A'.charCodeAt(0)];
-            } else {
-                result += messageChar;
-            }
-        }
-        output.innerHTML = result;
-    }
-    function vigenereDecode() {
-        let message = document.querySelector("#decodeInput").value;
-        constructor(message, "KEY");
-        let output = document.querySelector("#decodeOutput");
-        const messageList = message.split('');  
-        let result = "";
-        let currKeyChar = 0;
-        let tChar = 0;
-        for (const currChar of messageList) {
-            for (let row = 0; row <= 25; row++) { 
-                if (currKeyChar === this.keyList.length) {
-                    currKeyChar = 0;
-                }
-                if (currChar === ' ') {
-                    result += " ";
-                    row = 0;
-                    currKeyChar++;
-                } else if (currChar === this.cipherTable[row][this.keyList[currKeyChar].charCodeAt(0) - 65]) {
-                    tChar = row + 65;
-                    if (tChar > 90) {
-                        tChar -= 26;
-                    }
-                    result += String.fromCharCode(tChar);
-                    row = 0;
-                    currKeyChar++;
-                    break;
-                }
-            }
-        }
-        output.innerHTML = result.toUpperCase();
+        output.innerHTML = _process(message, true);
     }
 
-    function constructor(code, key) {
-        this.cipherTable = Array.from({ length: 26 }, () => Array(26).fill('')); // Create a 26x26 cipher table
-        this.keyList = key.split(''); // Convert key to a char array
-        code -= 2; // Adjust code for starting point
-        for (let i = 0; i < this.cipherTable.length; i++) {
-            let k = 65; // Start from 'A'
-            code += 1;
-            for (let j = 0; j < this.cipherTable[i].length; j++) {
-                if (k <= 90 && k >= 64) {
-                    k++;
-                    if (code < 90) {
-                        code++;
-                    } else {
-                        code -= 25;
-                    }
-                    this.cipherTable[i][j] = String.fromCharCode(code);
-                }
-            }   
+    function vigenereDecode() {
+        let message = document.querySelector("#decodeInput").value;
+        let output = document.querySelector("#decodeOutput");
+        output.innerHTML = _process(message, false);
+    }
+
+    function _process(message, encode = true) {
+        let result = "";
+        let keyIndex = 0;
+        let keyLength = key.length;
+
+        for (let i = 0; i < message.length; i++) {
+            let char = message[i];
+            if (char.match(/[A-Z]/i)) {
+                let isUpperCase = char === char.toUpperCase();
+                char = char.toUpperCase();
+                let shift = key[keyIndex % keyLength].charCodeAt(0) - 65;
+                let base = char.charCodeAt(0) - 65;
+                let newChar = encode 
+                    ? String.fromCharCode(((base + shift) % 26) + 65)
+                    : String.fromCharCode(((base - shift + 26) % 26) + 65);
+                result += isUpperCase ? newChar : newChar.toLowerCase();
+                keyIndex++;
+            } else {
+                result += char;
+            }
         }
-    }   
+        return result;
+    }
 
     // AFFINE FUNCTIONS
 
