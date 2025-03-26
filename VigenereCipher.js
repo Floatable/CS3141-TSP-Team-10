@@ -3,14 +3,6 @@ class VigenereCipher {
         this.key = key.toUpperCase();
     }
 
-    encode(message) {
-        return this._process(message, true);
-    }
-
-    decode(message) {
-        return this._process(message, false);
-    }
-
     _process(message, encode = true) {
         let result = "";
         let keyIndex = 0;
@@ -36,7 +28,16 @@ class VigenereCipher {
     }
 }
 
-// Example usage:
 const cipher = new VigenereCipher("BABBAGE");
-console.log(cipher.encode("HAPPY BIRTHDAY")); // Expected: "PHXXF MQYBPKNJ"
-console.log(cipher.decode("PHXXF MQYBPKNJ")); // Expected: "HAPPY BIRTHDAY"
+
+function vigenereEncode() {
+    let message = document.querySelector("#encodeInput").value;
+    let output = document.querySelector("#encodeOutput");
+    output.innerHTML = cipher._process(message, true);
+}
+
+function vigenereDecode() {
+    let message = document.querySelector("#decodeInput").value;
+    let output = document.querySelector("#decodeOutput");
+    output.innerHTML = cipher._process(message, false);
+}
