@@ -16,7 +16,7 @@
     <!--Input/output for encoding-->
     <form id="encodeButtonSpace">
         <input id="encodeInput" type="text" maxlength="200" placeholder="Insert text to encode here!" size="20" />
-        <input type="button" value="Encode" class="button" id="encodeButton" onclick="binEncode()">
+        <input type="button" value="Encode" class="button" id="encodeButton">
     </form>
 
     <br>
@@ -32,7 +32,7 @@
     <!--Input/output for decoding-->
     <form id="decodeButtonSpace">
         <input id="decodeInput" type="text" maxlength="200" placeholder="Insert text to decode here!" size="20" />
-        <input type="button" onclick="binDecode()" value="Decode" class="button" id="decodeButton"> </button>
+        <input type="button" value="Decode" class="button" id="decodeButton"> </button>
     </form>
 
     <br>
@@ -65,16 +65,28 @@
         <input type="radio" id="Affine" name="selectedCipher" value="Affine" onclick="affineClicked()">
         <label for="Affine">Affine</label><br>
     </div>
+        <br>
+        <p>Input key for Vigenere/Caesar cipher:</p>
+        <form>
+            <input type="text" placeholder="Insert key", id="key", name="Key"/>
+            <input type="button" value="Submit" class="button", id="setKeyButton"/>
+        </form>
+        <br>
+        <div class="outputArea">
+            <p id="keyCheck"></p>
+        </div>
+    </div>
+    
 
     <!--Binary, Hex, Morse, Caesar, Vigenere, Affine-->
 </div>
 
 <div class="rightColumn">
     <h2 id="cipherNamespace">
-        Binary Cipher
+        
     </h2>
-    <p>
-        Cipher description
+    <p id="cipherDescription">
+        
     </p>
 </div>
 
@@ -82,10 +94,42 @@
 
 <script>
 
+    document.getElementById("cipherNamespace").innerHTML = "Select a Cipher";
+    document.getElementById("cipherDescription").innerHTML = "A description of your selected cipher and how to use it will appear here!"
+
+    // VIGENERE AND CAESAR KEY SET FUNCTION
+
+    let cipherKey = "";
+
+    function setCaesarKey() {
+        cipherKey = parseInt(toString(document.getElementById("key")));
+        if(cipherKey < 0 || cipherKey > 26) {
+            cipherKey = "";
+            document.getElementById("keyCheck").innerHTML = "Key reset - please input a number 0-26";
+        } else {
+            cipherKey = toString(cipherKey);
+            document.getElementById("keyCheck").innerHTML = "Key set successfully!";
+        }
+    }
+
+    function setVigenereKey() {
+        cipherKey = toString(document.getElementById("key"));
+        for(i = 0; i < cipherKey.length; i++) {
+            if(cipherKey.charAt(i) < 65 || cipherKey.charAt(i) > 122 || (cipherKey.charAt(i) > 90 && cipherKey.charAt(i) < 97)) {
+                cipherKey = "";
+                document.getElementById("keyCheck").innerHTML = "Key reset - please input a series of letters";
+                return;
+            }
+        }
+        cipherKey = toString(cipherKey);
+        document.getElementById("keyCheck").innerHTML = "Key set successfully!"
+    }
+
     // DISPLAY CIPHER FUNCTIONS + BUTTON MAPPING
 
     function binaryClicked(){
         document.getElementById("cipherNamespace").innerHTML = "Binary Cipher";
+        document.getElementById("cipherDescription").innerHTML = "";
 
         //Change encode button
         var x = document.getElementById("encodeButtonSpace");
@@ -116,6 +160,7 @@
 
     function hexClicked(){
         document.getElementById("cipherNamespace").innerHTML = "Hex Cipher";
+        document.getElementById("cipherDescription").innerHTML = "";
 
         //Change encode button
         var x = document.getElementById("encodeButtonSpace");
@@ -146,6 +191,7 @@
 
     function morseClicked(){
         document.getElementById("cipherNamespace").innerHTML = "Morse Cipher";
+        document.getElementById("cipherDescription").innerHTML = "";
 
         //Change encode button
         var x = document.getElementById("encodeButtonSpace");
@@ -176,6 +222,7 @@
 
     function caesarClicked(){
         document.getElementById("cipherNamespace").innerHTML = "Caesar cipher";
+        document.getElementById("cipherDescription").innerHTML = "";
 
         //Change encode button
         var x = document.getElementById("encodeButtonSpace");
@@ -201,11 +248,16 @@
         button2.setAttribute("id", "decodeButton");
         y.appendChild(button2);
 
+        //Change key button
+        var button3 = document.getElementById("setKeyButton");
+        button3.setAttribute("onclick", "setCaesarKey()");
+
         return;
     }
 
     function vigenereClicked(){
         document.getElementById("cipherNamespace").innerHTML = "Vigenere Cipher";
+        document.getElementById("cipherDescription").innerHTML = "";
 
         //Change encode button
         var x = document.getElementById("encodeButtonSpace");
@@ -231,11 +283,16 @@
         button2.setAttribute("id", "decodeButton");
         y.appendChild(button2);
 
+        //Change key button
+        var button3 = document.getElementById("setKeyButton");
+        button3.setAttribute("onclick", "setVigenereKey()");
+
         return;
     }
 
     function affineClicked(){
         document.getElementById("cipherNamespace").innerHTML = "Affine Cipher";
+        document.getElementById("cipherDescription").innerHTML = "";
 
         //Change encode button
         var x = document.getElementById("encodeButtonSpace");
@@ -431,8 +488,6 @@
     
     // VIGENERE FUNCTIONS
 
-    let key = "BABBAGE";
-
     function vigenereEncode() {
         let message = document.querySelector("#encodeInput").value;
         let output = document.querySelector("#encodeOutput");
@@ -446,6 +501,7 @@
     }
 
     function _process(message, encode = true) {
+        let key = cipherKey;
         let result = "";
         let keyIndex = 0;
         let keyLength = key.length;
@@ -528,7 +584,7 @@
     function caesarEncode() {
         //initialize the output
         let input = document.querySelector("#encodeInput").value;
-        let key = 5;
+        let key = cipherKey;
         let result = document.querySelector("#encodeOutput");
         let output = "";
         let isLetter = false;
@@ -574,7 +630,7 @@
         //initialize the output
         let input = document.querySelector("#decodeInput").value;
         let result = document.querySelector("#decodeOutput");
-        let key = 5;
+        let key = cipherKey;
         let output = "";
         let isLetter = false;
         input = input.toLowerCase();
