@@ -67,7 +67,7 @@
     </div>
         <br>
         <p>Input key for Vigenere/Caesar cipher:</p>
-        <form>
+        <form id="keyButtonSpace">
             <input type="text" placeholder="Insert key", id="key", name="Key"/>
             <input type="button" value="Submit" class="button", id="setKeyButton"/>
         </form>
@@ -99,26 +99,30 @@
 
     // VIGENERE AND CAESAR KEY SET FUNCTION
 
-    let cipherKey = "";
+    let cipherKey = null;
 
     function setCaesarKey() {
-        cipherKey = parseInt(toString(document.getElementById("key")));
-        if(cipherKey < 0 || cipherKey > 26) {
-            cipherKey = "";
+        cipherKey = parseInt(document.querySelector("#key").value);
+        if(cipherKey == "" || cipherKey == NaN || cipherKey < 0 || cipherKey > 26) {
+            cipherKey = null;
             document.getElementById("keyCheck").innerHTML = "Key reset - please input a number 0-26";
         } else {
-            cipherKey = toString(cipherKey);
             document.getElementById("keyCheck").innerHTML = "Key set successfully!";
         }
     }
 
     function setVigenereKey() {
-        cipherKey = toString(document.getElementById("key"));
+        cipherKey = toString(document.querySelector("#key").value).trim();
+        if(cipherKey == "") {
+            cipherKey = null;
+            document.getElementById("keyCheck").innerHTML = "Key reset - please input a series of letters";
+        }
         for(i = 0; i < cipherKey.length; i++) {
             if(cipherKey.charAt(i) < 65 || cipherKey.charAt(i) > 122 || (cipherKey.charAt(i) > 90 && cipherKey.charAt(i) < 97)) {
-                cipherKey = "";
+                cipherKey = null;
                 document.getElementById("keyCheck").innerHTML = "Key reset - please input a series of letters";
-                return;
+            } else {
+                document.getElementById("keyCheck").innerHTML = "Key set successfully!";
             }
         }
         cipherKey = toString(cipherKey);
@@ -249,8 +253,16 @@
         y.appendChild(button2);
 
         //Change key button
-        var button3 = document.getElementById("setKeyButton");
+        var z = document.getElementById("keyButtonSpace");
+        var button3 = document.createElement("input");
         button3.setAttribute("onclick", "setCaesarKey()");
+        button3.setAttribute("type", "button");
+        button3.setAttribute("value", "Set Key");
+        button3.setAttribute("class", "button");
+        
+        document.getElementById("setKeyButton").remove();
+        button3.setAttribute("id", "setKeyButton");
+        z.appendChild(button3);
 
         return;
     }
@@ -284,8 +296,16 @@
         y.appendChild(button2);
 
         //Change key button
-        var button3 = document.getElementById("setKeyButton");
+        var z = document.getElementById("keyButtonSpace");
+        var button3 = document.createElement("input");
         button3.setAttribute("onclick", "setVigenereKey()");
+        button3.setAttribute("type", "button");
+        button3.setAttribute("value", "Set Key");
+        button3.setAttribute("class", "button");
+        
+        document.getElementById("setKeyButton").remove();
+        button3.setAttribute("id", "setKeyButton");
+        z.appendChild(button3);
 
         return;
     }
@@ -586,6 +606,10 @@
         let input = document.querySelector("#encodeInput").value;
         let key = cipherKey;
         let result = document.querySelector("#encodeOutput");
+        if(key == null) {
+            result.innerHTML = "Please set a key first!";
+            return;
+        }
         let output = "";
         let isLetter = false;
         input = input.toLowerCase();
