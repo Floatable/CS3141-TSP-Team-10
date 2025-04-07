@@ -184,41 +184,12 @@ function affineClicked() {
 
     // BINARY FUNCTIONS
 
-    function binDecode() {
-        let binaryValue = String(document.querySelector("#decodeInput").value);
-        let baseTenValue = 0;
-        let place = 0;
-        let output = document.querySelector("#decodeOutput");
-
-        //iterate through the binary string backwards
-        for (let i = binaryValue.length - 1; i >= 0; i--) {
-            //store the bit being examined
-            let currentBit = binaryValue.charAt(i);
-            //make sure the bit is a 0 or 1
-            if (currentBit !== "0" && currentBit !== "1") {
-                output.innerHTML = "Incorrect input, please try again";
-                return;
-            } else if (currentBit === "1") {
-                baseTenValue += Math.pow(2, place);
-            }
-            //increment the bit being examined
-            place++;
-        }
-
-        try {
-            output.innerHTML = String(baseTenValue);
-        } catch (e) {
-            output.innerHTML = "Incorrect input, please try again";
-            return;
-        }
-    }
-
     function binEncode() {
         let baseTenValue = document.querySelector("#encodeInput").value;
         let value = 0;
         let output = document.querySelector("#encodeOutput");
         //make sure input is valid
-        if (isNaN(parseInt(baseTenValue)) || parseInt(baseTenValue) < 0 || baseTenValue == "") {
+        if (isNaN(parseInt(baseTenValue)) || parseInt(baseTenValue) < 0) {
             output.innerHTML = "Incorrect input, please try again";
             return;
         } else {
@@ -244,6 +215,40 @@ function affineClicked() {
         }
 
         output.innerHTML = binaryValue;
+    }
+
+    function binDecode() {
+        let binaryValue = String(document.querySelector("#decodeInput").value);
+        let baseTenValue = 0;
+        let place = 0;
+        let output = document.querySelector("#decodeOutput");
+
+        if(binaryValue == "") {
+            output.innerHTML = "Incorrect input, please try again";
+            return;
+        }
+
+        //iterate through the binary string backwards
+        for (let i = binaryValue.length - 1; i >= 0; i--) {
+            //store the bit being examined
+            let currentBit = binaryValue.charAt(i);
+            //make sure the bit is a 0 or 1
+            if ((currentBit !== "0" && currentBit !== "1"))  {
+                output.innerHTML = "Incorrect input, please try again";
+                return;
+            } else if (currentBit === "1") {
+                baseTenValue += Math.pow(2, place);
+            }
+            //increment the bit being examined
+            place++;
+        }
+
+        try {
+            output.innerHTML = String(baseTenValue);
+        } catch (e) {
+            output.innerHTML = "Incorrect input, please try again";
+            return;
+        }
     }
 
     // HEX FUNCTIONS
