@@ -367,6 +367,10 @@ function affineClicked() {
         let keyIndex = 0;
         let keyLength = key.length;
 
+        if(key == null) {
+            return "Please set a key first!";
+        }
+
         for (let i = 0; i < message.length; i++) {
             let char = message[i];
             if (char.match(/[A-Z]/i)) {
@@ -496,6 +500,10 @@ function affineClicked() {
         let input = document.querySelector("#decodeInput").value;
         let result = document.querySelector("#decodeOutput");
         let key = cipherKey;
+        if(key == null) {
+            result.innerHTML = "Please set a key first!";
+            return;
+        }
         let output = "";
         let isLetter = false;
         input = input.toLowerCase();
