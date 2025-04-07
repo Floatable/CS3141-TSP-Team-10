@@ -1,3 +1,9 @@
+body{
+    margin: 0;
+    background: gray;
+    text-align: center;
+}
+
 .topLeftLogo {
     position: absolute;
     top: 0;
@@ -6,16 +12,6 @@
     height: auto;
     z-index: 1000; /* Make sure it stays on top */
 }
-
-
-
-body{
-    margin: 0;
-    background: gray;
-    text-align: center;
-}
-
-
 
 .outputArea{
    background-color: rgb(179, 25, 14);
