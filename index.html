@@ -139,8 +139,10 @@
     document.getElementById("decodeButton").setAttribute("onclick", "binDecode()");
 
     //Update Description
-    document.getElementById("cipherDescription").innerHTML = "A binary number is a number represented in base two." +
-        "Each digit in a binary number, called a bit, is either a one or a two.";
+    document.getElementById("cipherDescription").innerHTML = "A binary number is a number represented in base two, " +
+        "unlike the base ten (decimal) numbers that are usually used to represent numbers. " +
+        "Each digit in a binary number, called a bit, is either a one or a two. Binary is used internally in " + 
+        "most modern computers as it is easy to use with circuits and logic gates.";
 }
 
 function hexClicked() {
@@ -149,6 +151,14 @@ function hexClicked() {
 
     document.getElementById("encodeButton").setAttribute("onclick", "hexEncode()");
     document.getElementById("decodeButton").setAttribute("onclick", "hexDecode()");
+
+     //Update Description
+     document.getElementById("cipherDescription").innerHTML = "A hexadecimal or hex number is a number represented in base sixteen, " +
+        "unlike the base ten (decimal) numbers that are usually used to represent numbers. " +
+        "Each digit in a hex number can have a value up to fifteen but there are no single digit numbers that can represent values " +
+        "above nine. Therefore, A, B, C, D, E, and F are used to represent 10, 11, 12, 13, 14, and 15 respectively. To distinguish " +
+        "between decimal and hex numbers, a hex number often starts with 0x before any of the digits. For example, 0x103 only " +
+        "contains digits found in decimal, but the 0x lets readers know that it should be interpreted as a hex number."
 }
 
 function morseClicked() {
@@ -157,6 +167,12 @@ function morseClicked() {
 
     document.getElementById("encodeButton").setAttribute("onclick", "morseEncode()");
     document.getElementById("decodeButton").setAttribute("onclick", "morseDecode()");
+
+    //Update Description
+    document.getElementById("cipherDescription").innerHTML = "Morse code is a method of communication that encodes text characters " +
+        "as either dots or dashes. These dots and dashes can be represented as the symbols '.' and '-' but the real strength of " +
+        "morse code comes from the other ways it can be communicated. A flashing light can represen dots and dashes by varying the " +
+        "length of time the light is active. Morse can also be sent as sound, with varying lengths of noise being sent long distances."
 }
 
 
@@ -167,6 +183,12 @@ function caesarClicked() {
     document.getElementById("encodeButton").setAttribute("onclick", "caesarEncode()");
     document.getElementById("decodeButton").setAttribute("onclick", "caesarDecode()");
     document.getElementById("setKeyButton").setAttribute("onclick", "setCaesarKey()");
+
+    //Update Description
+    document.getElementById("cipherDescription").innerHTML = "A ceasar cipher is a type of substitution cipher in which each letter of " +
+        "the original message is replaced with a different letter of the alphabet. This is done by picking a numeric key and moving each " +
+        "letter of the original text forward in the alphabet by that much. If a letter goes past 'z', it wraps back around to 'a'. " + 
+        "For example, with a key of three, 'a' would become 'd', 'b' would becode 'e', and so on."
 }
 
 
@@ -177,6 +199,13 @@ function vigenereClicked() {
     document.getElementById("encodeButton").setAttribute("onclick", "vigenereEncode()");
     document.getElementById("decodeButton").setAttribute("onclick", "vigenereDecode()");
     document.getElementById("setKeyButton").setAttribute("onclick", "setVigenereKey()");
+
+     //Update Description
+     document.getElementById("cipherDescription").innerHTML = "A ceasar cipher is a type of substitution cipher in which each letter of " +
+        "the original message is replaced with a different letter of the alphabet. This is done by picking a keyword and shifting each " +
+        "letter of the original text based on a letter of the keyword. This is a more secure version of the " +
+        "caesar cipher because if your message repeats " +
+        "letters or words, they will be unlikely to appear as repeated letters in the ciphertext."
 }
 
 function affineClicked() {
@@ -185,6 +214,14 @@ function affineClicked() {
 
     document.getElementById("encodeButton").setAttribute("onclick", "affineEncode()");
     document.getElementById("decodeButton").setAttribute("onclick", "affineDecode()");
+
+    //Update Description
+     document.getElementById("cipherDescription").innerHTML = "The affine cipher is a type of monoalphabetic substitution cipher, where " + 
+     "each letter in an alphabet is mapped to its numeric equivalent, encrypted using a simple mathematical function, and converted back " +
+     "to a letter. The formula an affine cipher uses to encryot is (ax+b) mod c where 'a' and 'b' are keys, 'c' is the size of the alphabet, and " +
+     "'x' is the letter (in numeric form) that is being encrypted. The output is mod 'c' which means that it is reduced to its remainder" + 
+     "when divided by c. The decryption formula of a^(-1) * (x-b) uses the inverse of 'a' mod c. The inverse of 'a' mod c is the number" +
+     "that can be multiplied with 'a' to equal 1 mod c."
 }
 
 
