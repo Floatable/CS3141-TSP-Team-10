@@ -218,7 +218,7 @@ function affineClicked() {
         let value = 0;
         let output = document.querySelector("#encodeOutput");
         //make sure input is valid
-        if (isNaN(parseInt(baseTenValue)) || parseInt(baseTenValue) < 0) {
+        if (isNaN(parseInt(baseTenValue)) || parseInt(baseTenValue) < 0 || baseTenValue == "") {
             output.innerHTML = "Incorrect input, please try again";
             return;
         } else {
