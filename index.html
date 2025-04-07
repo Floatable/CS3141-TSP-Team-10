@@ -124,13 +124,17 @@
 
     // DISPLAY CIPHER FUNCTIONS + BUTTON MAPPING
 
-    function binaryClicked() {
+ function binaryClicked() {
     document.getElementById("cipherNamespace").innerHTML = "Binary Cipher";
     document.getElementById("cipherDescription").innerHTML = "";
 
     // Set behavior of existing buttons
     document.getElementById("encodeButton").setAttribute("onclick", "binEncode()");
     document.getElementById("decodeButton").setAttribute("onclick", "binDecode()");
+
+    //Update Description
+    document.getElementById("cipherDescription").innerHTML = "A binary number is a number represented in base two." +
+        "Each digit in a binary number, called a bit, is either a one or a two.";
 }
 
 function hexClicked() {
