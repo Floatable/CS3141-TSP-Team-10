@@ -1,6 +1,7 @@
 .topBanner {
-    width: fill;
+    width: 2400;
     height: auto;
+    display: block;
     margin: 0;
 }
 
