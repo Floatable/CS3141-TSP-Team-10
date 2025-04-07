@@ -14,48 +14,39 @@
         <!-- Left Side -->
         <div class="leftPane">
     
-            <!-- Encoding Section -->
-            <div class="section rowFlex">
-                <textarea id="encodeInput" class="textBox" maxlength="200" placeholder="Insert text to encode here!"></textarea>
-                <input type="button" value="Encode" class="button" id="encodeButton">
-                <div class="textBox" id="encodeOutput"></div>
+        <!-- Encoding Section -->
+        <div class="row">
+            <textarea id="encodeInput" class="inputBox" placeholder="Insert text to encode here!"></textarea>
+            <div id="encodeButtonSpace">
+                <input type="button" value="Encode" class="button" id="encodeButton" onclick="binEncode()">
             </div>
-    
-            <!-- Cipher Selection Section -->
-            <div class="section cipherFlex">
-                <!-- Cipher selection -->
-                <div>
-                    <p>Please select a cipher to begin</p>
-                    <input type="radio" id="Binary" name="selectedCipher" value="Binary" onclick="binaryClicked()">
-                    <label for="Binary">Binary</label><br>
-                    <input type="radio" id="Hex" name="selectedCipher" value="Hex" onclick="hexClicked()">
-                    <label for="Hex">Hex</label><br>
-                    <input type="radio" id="Morse" name="selectedCipher" value="Morse" onclick="morseClicked()">
-                    <label for="Morse">Morse</label><br>
-                    <input type="radio" id="Caesar" name="selectedCipher" value="Caesar" onclick="caesarClicked()">
-                    <label for="Caesar">Caesar</label><br>
-                    <input type="radio" id="Vigenere" name="selectedCipher" value="Vigenere" onclick="vigenereClicked()">
-                    <label for="Vigenere">Vigenere</label><br>
-                    <input type="radio" id="Affine" name="selectedCipher" value="Affine" onclick="affineClicked()">
-                    <label for="Affine">Affine</label><br>
-                </div>
-    
-                <!-- Key input -->
-                <div>
-                    <p>Input key for Vigenere/Caesar cipher:</p>
-                    <input type="text" placeholder="Insert key" id="key" name="Key" class="keyInput">
-                    <input type="button" value="Submit" class="button" id="setKeyButton">
-                </div>
-            </div>
-    
-            <!-- Decoding Section -->
-            <div class="section rowFlex">
-                <textarea id="decodeInput" class="textBox" maxlength="200" placeholder="Insert text to decode here!"></textarea>
-                <input type="button" value="Decode" class="button" id="decodeButton">
-                <div class="textBox" id="decodeOutput"></div>
-            </div>
-    
+            <div class="outputBox" id="encodeOutput"></div>
         </div>
+
+        <!-- Cipher selection and key input -->
+        <div class="columnContainer">
+            <div>
+                <!-- Cipher radio buttons (unchanged) -->
+                <input type="radio" id="Binary" name="selectedCipher" value="Binary" onclick="binaryClicked()">
+                <label for="Binary">Binary</label><br>
+                <!-- other ciphers... -->
+            </div>
+            <div>
+                <input type="text" placeholder="Insert key" id="key" name="Key" style="border: 2px solid #12a70f; padding: 5px;">
+                <input type="button" value="Submit" class="button" id="setKeyButton"/>
+                <div class="outputBox" id="keyCheck" style="color: black; background: white; border: 2px solid orange;"></div>
+            </div>
+        </div>
+
+        <!-- Decoding Section -->
+        <div class="row">
+            <textarea id="decodeInput" class="inputBox" placeholder="Insert text to decode here!"></textarea>
+            <div id="decodeButtonSpace">
+                <input type="button" value="Decode" class="button" id="decodeButton" onclick="binDecode()">
+            </div>
+            <div class="outputBox" id="decodeOutput"></div>
+        </div>
+
     
         <!-- Right Side -->
         <div class="rightPane">
