@@ -8,7 +8,7 @@ body{
     position: absolute;
     top: 0;
     left: 0;
-    width: 600px; /* Adjust size as needed */
+    width: 800px; /* Adjust size as needed */
     height: auto;
     z-index: 1000; /* Make sure it stays on top */
 }
