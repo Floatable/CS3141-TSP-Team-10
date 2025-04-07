@@ -190,35 +190,6 @@ function affineClicked() {
 
     // BINARY FUNCTIONS
 
-    function binDecode() {
-        let binaryValue = String(document.querySelector("#decodeInput").value);
-        let baseTenValue = 0;
-        let place = 0;
-        let output = document.querySelector("#decodeOutput");
-
-        //iterate through the binary string backwards
-        for (let i = binaryValue.length - 1; i >= 0; i--) {
-            //store the bit being examined
-            let currentBit = binaryValue.charAt(i);
-            //make sure the bit is a 0 or 1
-            if (currentBit !== "0" && currentBit !== "1") {
-                output.innerHTML = "Incorrect input, please try again";
-                return;
-            } else if (currentBit === "1") {
-                baseTenValue += Math.pow(2, place);
-            }
-            //increment the bit being examined
-            place++;
-        }
-
-        try {
-            output.innerHTML = String(baseTenValue);
-        } catch (e) {
-            output.innerHTML = "Incorrect input, please try again";
-            return;
-        }
-    }
-
     function binEncode() {
         let baseTenValue = document.querySelector("#encodeInput").value;
         let value = 0;
@@ -250,6 +221,40 @@ function affineClicked() {
         }
 
         output.innerHTML = binaryValue;
+    }
+
+    function binDecode() {
+        let binaryValue = String(document.querySelector("#decodeInput").value);
+        let baseTenValue = 0;
+        let place = 0;
+        let output = document.querySelector("#decodeOutput");
+
+        if(binaryValue === "") {
+            output.innerHTML = "Incorrect input, please try again";
+            return;
+        }
+
+        //iterate through the binary string backwards
+        for (let i = binaryValue.length - 1; i >= 0; i--) {
+            //store the bit being examined
+            let currentBit = binaryValue.charAt(i);
+            //make sure the bit is a 0 or 1
+            if ((currentBit !== "0" && currentBit !== "1"))  {
+                output.innerHTML = "Incorrect input, please try again";
+                return;
+            } else if (currentBit === "1") {
+                baseTenValue += Math.pow(2, place);
+            }
+            //increment the bit being examined
+            place++;
+        }
+
+        try {
+            output.innerHTML = String(baseTenValue);
+        } catch (e) {
+            output.innerHTML = "Incorrect input, please try again";
+            return;
+        }
     }
 
     // HEX FUNCTIONS
@@ -372,6 +377,10 @@ function affineClicked() {
         let result = "";
         let keyIndex = 0;
         let keyLength = key.length;
+
+        if(key == null) {
+            return "Please set a key first!";
+        }
 
         for (let i = 0; i < message.length; i++) {
             let char = message[i];
@@ -502,6 +511,10 @@ function affineClicked() {
         let input = document.querySelector("#decodeInput").value;
         let result = document.querySelector("#decodeOutput");
         let key = cipherKey;
+        if(key == null) {
+            result.innerHTML = "Please set a key first!";
+            return;
+        }
         let output = "";
         let isLetter = false;
         input = input.toLowerCase();
