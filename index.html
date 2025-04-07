@@ -169,98 +169,31 @@
 
     // DISPLAY CIPHER FUNCTIONS + BUTTON MAPPING
 
-    function binaryClicked(){
-        document.getElementById("cipherNamespace").innerHTML = "Binary Cipher";
-        document.getElementById("cipherDescription").innerHTML = "";
+    function binaryClicked() {
+    document.getElementById("cipherNamespace").innerHTML = "Binary Cipher";
+    document.getElementById("cipherDescription").innerHTML = "";
 
-        //Change encode button
-        var x = document.getElementById("encodeButtonSpace");
-        var button1 = document.createElement('input');
-        button1.setAttribute("type", "button");
-        button1.setAttribute("value", "Encode");
-        button1.setAttribute("class", "button");
-        button1.setAttribute("onclick", "binEncode()");
+    // Set behavior of existing buttons
+    document.getElementById("encodeButton").setAttribute("onclick", "binEncode()");
+    document.getElementById("decodeButton").setAttribute("onclick", "binDecode()");
+}
 
-        document.getElementById("encodeButton").remove();
-        button1.setAttribute("id", "encodeButton");
-        x.appendChild(button1);
+function hexClicked() {
+    document.getElementById("cipherNamespace").innerHTML = "Hex Cipher";
+    document.getElementById("cipherDescription").innerHTML = "";
 
-        //Change decode button
-        var y = document.getElementById("decodeButtonSpace");
-        var button2 = document.createElement('input');
-        button2.setAttribute("type", "button");
-        button2.setAttribute("value", "Decode");
-        button2.setAttribute("class", "button");
-        button2.setAttribute("onclick", "binDecode()");
+    document.getElementById("encodeButton").setAttribute("onclick", "hexEncode()");
+    document.getElementById("decodeButton").setAttribute("onclick", "hexDecode()");
+}
 
-        document.getElementById("decodeButton").remove();
-        button2.setAttribute("id", "decodeButton");
-        y.appendChild(button2);
+function morseClicked() {
+    document.getElementById("cipherNamespace").innerHTML = "Morse Cipher";
+    document.getElementById("cipherDescription").innerHTML = "";
 
-        return;
-    }
+    document.getElementById("encodeButton").setAttribute("onclick", "morseEncode()");
+    document.getElementById("decodeButton").setAttribute("onclick", "morseDecode()");
+}
 
-    function hexClicked(){
-        document.getElementById("cipherNamespace").innerHTML = "Hex Cipher";
-        document.getElementById("cipherDescription").innerHTML = "";
-
-        //Change encode button
-        var x = document.getElementById("encodeButtonSpace");
-        var button1 = document.createElement('input');
-        button1.setAttribute("type", "button");
-        button1.setAttribute("value", "Encode");
-        button1.setAttribute("class", "button");
-        button1.setAttribute("onclick", "hexEncode()");
-
-        document.getElementById("encodeButton").remove();
-        button1.setAttribute("id", "encodeButton");
-        x.appendChild(button1);
-
-        //Change decode button
-        var y = document.getElementById("decodeButtonSpace");
-        var button2 = document.createElement('input');
-        button2.setAttribute("type", "button");
-        button2.setAttribute("value", "Decode");
-        button2.setAttribute("class", "button");
-        button2.setAttribute("onclick", "hexDecode()");
-
-        document.getElementById("decodeButton").remove();
-        button2.setAttribute("id", "decodeButton");
-        y.appendChild(button2);
-
-        return;
-    }
-
-    function morseClicked(){
-        document.getElementById("cipherNamespace").innerHTML = "Morse Cipher";
-        document.getElementById("cipherDescription").innerHTML = "";
-
-        //Change encode button
-        var x = document.getElementById("encodeButtonSpace");
-        var button1 = document.createElement('input');
-        button1.setAttribute("type", "button");
-        button1.setAttribute("value", "Encode");
-        button1.setAttribute("class", "button");
-        button1.setAttribute("onclick", "morseEncode()");
-
-        document.getElementById("encodeButton").remove();
-        button1.setAttribute("id", "encodeButton");
-        x.appendChild(button1);
-
-        //Change decode button
-        var y = document.getElementById("decodeButtonSpace");
-        var button2 = document.createElement('input');
-        button2.setAttribute("type", "button");
-        button2.setAttribute("value", "Decode");
-        button2.setAttribute("class", "button");
-        button2.setAttribute("onclick", "morseDecode()");
-
-        document.getElementById("decodeButton").remove();
-        button2.setAttribute("id", "decodeButton");
-        y.appendChild(button2);
-
-        return;
-    }
 
     function caesarClicked(){
         document.getElementById("cipherNamespace").innerHTML = "Caesar cipher";
