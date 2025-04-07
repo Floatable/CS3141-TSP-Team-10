@@ -2,7 +2,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: fit-content; 
+    width: 100px;
     z-index: 1000; 
 }
 
