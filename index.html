@@ -16,9 +16,9 @@
     
             <!-- Encoding Section -->
             <div class="section rowFlex">
-                <textarea id="encodeInput" class="textBox" maxlength="200" placeholder="Insert text to encode here!"></textarea>
-                <input type="button" value="Encode" class="button" id="encodeButton">
-                <div class="textBox" id="encodeOutput"></div>
+                <textarea id="encodeInput" class="textBox" placeholder="Insert text to encode here!"></textarea>
+                <input type="button" value="Encode →" class="button" id="encodeButton">
+                <div class="textBox" id="encodeOutput" placeholder="Output text will display here!"></div>
             </div>
     
             <!-- Cipher Selection Section -->
@@ -50,8 +50,8 @@
     
             <!-- Decoding Section -->
             <div class="section rowFlex">
-                <textarea id="decodeInput" class="textBox" maxlength="200" placeholder="Insert text to decode here!"></textarea>
-                <input type="button" value="Decode" class="button" id="decodeButton">
+                <textarea id="decodeInput" class="textBox" placeholder="Insert text to decode here!"></textarea>
+                <input type="button" value="Decode →" class="button" id="decodeButton">
                 <div class="textBox" id="decodeOutput"></div>
             </div>
     
@@ -82,50 +82,6 @@
         
     
     </div>
-    
-
-
-<div class="middleColumn">
-    <!--Radio button for selecting a cipher-->
-    <p>Please select a cipher to begin</p>
-    <div style="text-align: left; padding-left: 180px;">
-        <input type="radio" id="Binary" name="selectedCipher" value="Binary" onclick="binaryClicked()">
-        <label for="Binary">Binary</label><br>
-        <input type="radio" id="Hex" name="selectedCipher" value="Hex" onclick="hexClicked()">
-        <label for="Hex">Hex</label><br>
-        <input type="radio" id="Morse" name="selectedCipher" value="Morse" onclick="morseClicked()">
-        <label for="Morse">Morse</label><br>
-        <input type="radio" id="Caesar" name="selectedCipher" value="Caesar" onclick="caesarClicked()">
-        <label for="Caesar">Caesar</label><br>
-        <input type="radio" id="Vigenere" name="selectedCipher" value="Vigenere" onclick="vigenereClicked()">
-        <label for="Vigenere">Vigenere</label><br>
-        <input type="radio" id="Affine" name="selectedCipher" value="Affine" onclick="affineClicked()">
-        <label for="Affine">Affine</label><br>
-    </div>
-        <br>
-        <p>Input key for Vigenere/Caesar cipher:</p>
-        <form id="keyButtonSpace">
-            <input type="text" placeholder="Insert key", id="key", name="Key"/>
-            <input type="button" value="Submit" class="button", id="setKeyButton"/>
-        </form>
-        <br>
-        <div class="outputArea">
-            <p id="keyCheck"></p>
-        </div>
-    </div>
-    
-
-    <!--Binary, Hex, Morse, Caesar, Vigenere, Affine-->
-</div>
-
-<div class="rightColumn">
-    <h2 id="cipherNamespace">
-        
-    </h2>
-    <p id="cipherDescription">
-        
-    </p>
-</div>
 
 </body>
 
