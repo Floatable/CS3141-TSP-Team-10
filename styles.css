@@ -50,12 +50,12 @@
 }
 
 .leftPane {
-    width: 60%;
+    width: 70%;
     float: left;
 }
 
 .rightPane {
-    width: 40%;
+    width: 30%;
     float: left;
     background: linear-gradient(to bottom, yellow, orange);
     color: white;
