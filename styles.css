@@ -19,14 +19,14 @@ body {
 
 
 .leftPane {
-    width: 70%;
+    width: 60%;
     padding: 20px;
     box-sizing: border-box;
 }
 
 
 .rightPane {
-    width: 30%;
+    width: 40%;
     padding: 20px;
     background: linear-gradient(to bottom, #f7d308, #f5720a);
     color: white;
