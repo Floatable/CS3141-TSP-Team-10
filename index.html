@@ -7,73 +7,86 @@
 </head>
 
 <body>
-    <img src="docs/assets/c0debreakers.png" alt="Banner Logo" class="topBanner">
+    <br>
+    <img src="docs/assets/c0debreakers.png" alt="Logo" class="topLeftLogo">
 
-    <div class="mainContainer">
-    
-        <!-- Left Side -->
-        <div class="leftPane">
-    
-            <!-- Encoding Section -->
-            <div class="section rowFlex">
-                <textarea id="encodeInput" class="textBox" maxlength="200" placeholder="Insert text to encode here!"></textarea>
-                <input type="button" value="Encode" class="button" id="encodeButton">
-                <div class="textBox" id="encodeOutput"></div>
-            </div>
-    
-            <!-- Cipher Selection Section -->
-            <div class="section cipherFlex">
-                <!-- Cipher selection -->
-                <div>
-                    <p>Please select a cipher to begin</p>
-                    <input type="radio" id="Binary" name="selectedCipher" value="Binary" onclick="binaryClicked()">
-                    <label for="Binary">Binary</label><br>
-                    <input type="radio" id="Hex" name="selectedCipher" value="Hex" onclick="hexClicked()">
-                    <label for="Hex">Hex</label><br>
-                    <input type="radio" id="Morse" name="selectedCipher" value="Morse" onclick="morseClicked()">
-                    <label for="Morse">Morse</label><br>
-                    <input type="radio" id="Caesar" name="selectedCipher" value="Caesar" onclick="caesarClicked()">
-                    <label for="Caesar">Caesar</label><br>
-                    <input type="radio" id="Vigenere" name="selectedCipher" value="Vigenere" onclick="vigenereClicked()">
-                    <label for="Vigenere">Vigenere</label><br>
-                    <input type="radio" id="Affine" name="selectedCipher" value="Affine" onclick="affineClicked()">
-                    <label for="Affine">Affine</label><br>
-                </div>
-    
-                <!-- Key input -->
-                <div>
-                    <p>Input key for Vigenere/Caesar cipher:</p>
-                    <input type="text" placeholder="Insert key" id="key" name="Key" class="keyInput">
-                    <input type="button" value="Submit" class="button" id="setKeyButton">
-                </div>
-            </div>
-    
-            <!-- Decoding Section -->
-            <div class="section rowFlex">
-                <textarea id="decodeInput" class="textBox" maxlength="200" placeholder="Insert text to decode here!"></textarea>
-                <input type="button" value="Decode" class="button" id="decodeButton">
-                <div class="textBox" id="decodeOutput"></div>
-            </div>
-    
+<div class="leftColumn">
+    <!--Input/output for encoding-->
+    <form id="encodeButtonSpace">
+        <input id="encodeInput" type="text" maxlength="200" placeholder="Insert text to encode here!" size="20" />
+        <input type="button" value="Encode" class="button" id="encodeButton">
+    </form>
+
+    <br>
+    Output:
+    <br>
+
+    <div class="outputArea">
+        <p id="encodeOutput"> 
+            <br><br>
+        </p>
+    </div>
+
+    <!--Input/output for decoding-->
+    <form id="decodeButtonSpace">
+        <input id="decodeInput" type="text" maxlength="200" placeholder="Insert text to decode here!" size="20" />
+        <input type="button" value="Decode" class="button" id="decodeButton"> </button>
+    </form>
+
+    <br>
+    Output:
+    <br>
+
+    <div class="outputArea">
+        <p id="decodeOutput">
+        
+            <br><br>
+        </p>
+    </div>
+</div>
+
+
+<div class="middleColumn">
+    <!--Radio button for selecting a cipher-->
+    <p>Please select a cipher to begin</p>
+    <div style="text-align: left; padding-left: 180px;">
+        <input type="radio" id="Binary" name="selectedCipher" value="Binary" onclick="binaryClicked()">
+        <label for="Binary">Binary</label><br>
+        <input type="radio" id="Hex" name="selectedCipher" value="Hex" onclick="hexClicked()">
+        <label for="Hex">Hex</label><br>
+        <input type="radio" id="Morse" name="selectedCipher" value="Morse" onclick="morseClicked()">
+        <label for="Morse">Morse</label><br>
+        <input type="radio" id="Caesar" name="selectedCipher" value="Caesar" onclick="caesarClicked()">
+        <label for="Caesar">Caesar</label><br>
+        <input type="radio" id="Vigenere" name="selectedCipher" value="Vigenere" onclick="vigenereClicked()">
+        <label for="Vigenere">Vigenere</label><br>
+        <input type="radio" id="Affine" name="selectedCipher" value="Affine" onclick="affineClicked()">
+        <label for="Affine">Affine</label><br>
+    </div>
+        <br>
+        <p>Input key for Vigenere/Caesar cipher:</p>
+        <form id="keyButtonSpace">
+            <input type="text" placeholder="Insert key", id="key", name="Key"/>
+            <input type="button" value="Submit" class="button", id="setKeyButton"/>
+        </form>
+        <br>
+        <div class="outputArea">
+            <p id="keyCheck"></p>
         </div>
-    
-        <!-- Right Side -->
-        <div class="rightPane">
-            <!-- Cipher Name and Description -->
-            <div>
-                <h2 id="cipherNamespace">Cipher Name</h2>
-                <p id="cipherDescription">This is a placeholder description for the selected cipher.</p>
-            </div>
-    
-            <!-- How it Works Section -->
-            <div style="margin-top: 40px;">
-                <h2>How it Works</h2>
-                <p>This is a placeholder explanation for how the cipher works. More detailed information will go here depending on the selected cipher.</p>
-            </div>
-        </div>
-    
     </div>
     
+
+    <!--Binary, Hex, Morse, Caesar, Vigenere, Affine-->
+</div>
+
+<div class="rightColumn">
+    <h2 id="cipherNamespace">
+        
+    </h2>
+    <p id="cipherDescription">
+        
+    </p>
+</div>
 
 </body>
 

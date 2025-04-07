@@ -7,29 +7,29 @@
 
 body {
     margin: 0;
-    background: linear-gradient(to bottom, white, #9e9e9e); 
+    background: linear-gradient(to bottom, white, #d3d3d3); /* white to light grey gradient */
     text-align: center;
     font-family: sans-serif;
 }
 
-
+/* Updated outputArea to be a proper output box instead */
 .outputArea {
     background-color: white;
     border: 2px solid orange;
-    width: 300px;        
-    height: 100px;       
+    width: 300px;        /* Fixed width */
+    height: 100px;       /* Fixed height */
     margin: 10px auto;
     padding: 10px;
     text-align: left;
     overflow-y: auto;
-    white-space: pre-wrap; 
+    white-space: pre-wrap; /* Keeps formatting */
     box-sizing: border-box;
 }
 
 /* Updated button style */
 .button {
-    background-color: #0fd93e; 
-    border: 2px solid #12a70f; 
+    background-color: #28a745; /* Green */
+    border: 2px solid #1c5e32; /* Dark green border */
     border-radius: 8px;
     color: white;
     padding: 6px 20px;
@@ -39,7 +39,7 @@ body {
 }
 
 .button:hover {
-    background-color: #2ba214; 
+    background-color: #218838; /* Slightly darker green on hover */
 }
 
 .leftColumn {
