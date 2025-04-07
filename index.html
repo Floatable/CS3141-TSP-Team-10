@@ -301,6 +301,10 @@ function affineClicked() {
     function hexDecode() {
         let input = document.querySelector("#decodeInput").value;
         let output = document.querySelector("#decodeOutput");
+        if(input === "") {
+            output.innerHTML = "Incorrect input, please try again";
+            return;
+        }
         let baseTenValue = 0;
         let place = 0;
         input = input.toString();
@@ -349,12 +353,20 @@ function affineClicked() {
     function morseEncode() {
         let text = document.querySelector("#encodeInput").value;
         let output = document.querySelector("#encodeOutput");
+        if(text === "") {
+            output.innerHTML = "Incorrect input, please try again";
+            return;
+        }
         output.innerHTML = text.toString().toUpperCase().split('').map(char => MORSE_CODE[char] || '').join(' ');
     }
 
     function morseDecode() {
         let morse = document.querySelector("#decodeInput").value;
         let output = document.querySelector("#decodeOutput");
+        if(morse === "") {
+            output.innerHTML = "Incorrect input, please try again";
+            return;
+        }
         output.innerHTML = morse.split(' ').map(code => REVERSE_MORSE_CODE[code] || '').join('');
     }
     
@@ -367,6 +379,10 @@ function affineClicked() {
         }
         let message = document.querySelector("#encodeInput").value;
         let output = document.querySelector("#encodeOutput");
+        if(message === "") {
+            output.innerHTML = "Incorrect input, please try again";
+            return;
+        }
         output.innerHTML = _process(message, true);
     }
 
@@ -377,6 +393,10 @@ function affineClicked() {
         }
         let message = document.querySelector("#decodeInput").value;
         let output = document.querySelector("#decodeOutput");
+        if(message === "") {
+            output.innerHTML = "Incorrect input, please try again";
+            return;
+        }
         output.innerHTML = _process(message, false);
     }
 
@@ -419,6 +439,10 @@ function affineClicked() {
     function affineEncode() {
         let value = document.querySelector("#encodeInput").value;
         let output = document.querySelector("#encodeOutput");
+        if(value === "") {
+            output.innerHTML = "Incorrect input, please try again";
+            return;
+        }
         let a = 5, b = 8, m = 26; // Example keys, ensure 'a' is coprime with 'm'
         let encryptedText = "";
 
@@ -438,6 +462,10 @@ function affineClicked() {
     function affineDecode() {
         let value = document.querySelector("#decodeInput").value;
         let output = document.querySelector("#decodeOutput");
+        if(value === "") {
+            output.innerHTML = "Incorrect input, please try again";
+            return;
+        }
         let a = 5, b = 8, m = 26;
         let a_inv = modInverse(a, m);
         if (a_inv === null) {
@@ -468,6 +496,10 @@ function affineClicked() {
         let result = document.querySelector("#encodeOutput");
         if(key == null) {
             result.innerHTML = "Please set a key first!";
+            return;
+        }
+        if(input === "") {
+            result.innerHTML = "Incorrect input, please try again";
             return;
         }
         let output = "";
@@ -517,6 +549,10 @@ function affineClicked() {
         let key = cipherKey;
         if(key == null) {
             result.innerHTML = "Please set a key first!";
+            return;
+        }
+        if(input === "") {
+            result.innerHTML = "Incorrect input, please try again";
             return;
         }
         let output = "";
