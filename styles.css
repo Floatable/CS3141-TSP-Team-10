@@ -1,35 +1,91 @@
-body{
+.topBanner {
+    width: 100%;
+    height: auto;
+    display: block;
     margin: 0;
-    background: gray;
-    text-align: center;
 }
 
-.outputArea{
-   background-color: rgb(179, 25, 14);
-   max-width: fit-content;
-   margin-left: auto;
-   margin-right: auto;
+body {
+    margin: 0;
+    background: linear-gradient(to bottom, white, #9e9e9e); 
+    font-family: sans-serif;
 }
 
-.leftColumn{
-    float: left;
-    width: 33.33%;
+.mainContainer {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
 }
 
-.middleColumn{
-    float: left;
-    width: 33.33%;
+
+.leftPane {
+    width: 70%;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-.rightColumn{
-    float: left;
-    width: 33.33%;
+
+.rightPane {
+    width: 30%;
+    padding: 20px;
+    background: linear-gradient(to bottom, #f7d308, #f5720a);
+    color: white;
+    box-sizing: border-box;
+    text-align: left;
 }
 
-.button{
-    background-color: rgb(179, 25, 14);
-    border-radius: 10px;
-    color: black;
-    border: 10px black;
-    padding: 3px 15px;
+.section {
+    margin-bottom: 30px;
+}
+
+
+.textBox {
+    background-color: white;
+    border: 2px solid orange;
+    width: 400px;
+    height: 200px;
+    padding: 10px;
+    box-sizing: border-box;
+    resize: none;
+    overflow-y: auto;
+    white-space: pre-wrap;
+}
+
+
+.keyInput {
+    border: 2px solid #12a70f;
+    padding: 12px;
+    border-radius: 4px;
+}
+
+
+.button {
+    background-color: #0fd93e;
+    border: 2px solid #12a70f;
+    border-radius: 8px;
+    color: white;
+    padding: 12px 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #2ba214;
+}
+
+
+.rowFlex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+
+.cipherFlex {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 20px;
 }
