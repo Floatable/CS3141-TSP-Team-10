@@ -142,7 +142,7 @@
     document.getElementById("cipherDescription").innerHTML = "A binary number is a number represented in base two, " +
         "unlike the base ten (decimal) numbers that are usually used to represent numbers. " +
         "Each digit in a binary number, called a bit, is either a one or a two. Binary is used internally in " + 
-        "most modern computers as it is easy to use with circuits and logic gates.";
+        "most modern computers as it is easy to use with circuits and logic gates." + "TESTING V1";
 }
 
 function hexClicked() {
@@ -241,6 +241,11 @@ function affineClicked() {
         let binaryValue = "";
         let tempVal;
         let tempStr = "";
+
+        //Check if input value is 0
+        if(value == 0) {
+            output.innerHTML = "0";
+        }
 
         //iteratively divide the input by 2
         while (value !== 0) {
