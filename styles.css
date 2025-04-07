@@ -17,16 +17,16 @@ body {
     min-height: 100vh;
 }
 
-/* Left Section - 60% */
+
 .leftPane {
-    width: 60%;
+    width: 70%;
     padding: 20px;
     box-sizing: border-box;
 }
 
-/* Right Section - 40% */
+
 .rightPane {
-    width: 40%;
+    width: 30%;
     padding: 20px;
     background: linear-gradient(to bottom, #f7d308, #f5720a);
     color: white;
