@@ -45,7 +45,9 @@
                     <p>Input key for Vigenere/Caesar cipher:</p>
                     <input type="text" placeholder="Insert key" id="key" name="Key" class="keyInput">
                     <input type="button" value="Submit" class="button" id="setKeyButton">
+                    <p id="keyCheck" style="color: green; margin-top: 10px;"></p>
                 </div>
+
             </div>
     
             <!-- Decoding Section -->
@@ -94,33 +96,37 @@
 
     let cipherKey = null;
 
-    function setCaesarKey() {
-        cipherKey = parseInt(document.querySelector("#key").value);
-        if(cipherKey == "" || cipherKey == NaN || cipherKey < 0 || cipherKey > 26) {
-            cipherKey = null;
-            document.getElementById("keyCheck").innerHTML = "Key reset - please input a number 0-26";
-        } else {
-            document.getElementById("keyCheck").innerHTML = "Key set successfully!";
-        }
-    }
+         function setCaesarKey() {
+            const input = document.querySelector("#key").value.trim();
+            const key = parseInt(input);
 
-    function setVigenereKey() {
-        cipherKey = toString(document.querySelector("#key").value).trim();
-        if(cipherKey == "") {
-            cipherKey = null;
-            document.getElementById("keyCheck").innerHTML = "Key reset - please input a series of letters";
-        }
-        for(i = 0; i < cipherKey.length; i++) {
-            if(cipherKey.charAt(i) < 65 || cipherKey.charAt(i) > 122 || (cipherKey.charAt(i) > 90 && cipherKey.charAt(i) < 97)) {
+            if (isNaN(key) || key < 0 || key > 26) {
                 cipherKey = null;
-                document.getElementById("keyCheck").innerHTML = "Key reset - please input a series of letters";
+                document.getElementById("keyCheck").style.color = "red";
+                document.getElementById("keyCheck").innerText = "Key reset – please input a number between 0 and 26.";
             } else {
-                document.getElementById("keyCheck").innerHTML = "Key set successfully!";
+                cipherKey = key;
+                document.getElementById("keyCheck").style.color = "green";
+                document.getElementById("keyCheck").innerText = "Key set successfully!";
             }
         }
-        cipherKey = toString(cipherKey);
-        document.getElementById("keyCheck").innerHTML = "Key set successfully!"
-    }
+
+        function setVigenereKey() {
+            const input = document.querySelector("#key").value.trim();
+            const lettersOnly = /^[A-Za-z]+$/;
+
+            if (!lettersOnly.test(input)) {
+                cipherKey = null;
+                document.getElementById("keyCheck").style.color = "red";
+                document.getElementById("keyCheck").innerText = "Key reset – please input only letters.";
+            } else {
+                cipherKey = input.toUpperCase(); // Optionally normalize
+                document.getElementById("keyCheck").style.color = "green";
+                document.getElementById("keyCheck").innerText = "Key set successfully!";
+            }
+        }
+
+
 
     // DISPLAY CIPHER FUNCTIONS + BUTTON MAPPING
 
