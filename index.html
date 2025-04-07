@@ -361,26 +361,30 @@ function affineClicked() {
     // VIGENERE FUNCTIONS
 
     function vigenereEncode() {
+        if(cipherKey == null) {
+            document.querySelector("#encodeOutput").innerHTML = "Please set a key first!";
+            return;
+        }
         let message = document.querySelector("#encodeInput").value;
         let output = document.querySelector("#encodeOutput");
         output.innerHTML = _process(message, true);
     }
 
     function vigenereDecode() {
+        if(cipherKey == null) {
+            document.querySelector("#decodeOutput").innerHTML = "Please set a key first!";
+            return;
+        }
         let message = document.querySelector("#decodeInput").value;
         let output = document.querySelector("#decodeOutput");
         output.innerHTML = _process(message, false);
     }
 
-    function _process(message, encode = true) {
+    function _process(message, encode) {
         let key = cipherKey;
         let result = "";
         let keyIndex = 0;
         let keyLength = key.length;
-
-        if(key === null) {
-            return "Please set a key first!";
-        }
 
         for (let i = 0; i < message.length; i++) {
             let char = message[i];
