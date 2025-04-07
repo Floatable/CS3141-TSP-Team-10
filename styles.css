@@ -42,7 +42,7 @@ body {
 .textBox {
     background-color: white;
     border: 2px solid orange;
-    width: 300px;
+    width: 400px;
     height: 200px;
     padding: 10px;
     box-sizing: border-box;
