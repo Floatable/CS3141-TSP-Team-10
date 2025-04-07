@@ -17,16 +17,16 @@ body {
     min-height: 100vh;
 }
 
-/* Left Section - 60% */
+
 .leftPane {
-    width: 60%;
+    width: 70%;
     padding: 20px;
     box-sizing: border-box;
 }
 
-/* Right Section - 40% */
+
 .rightPane {
-    width: 40%;
+    width: 30%;
     padding: 20px;
     background: linear-gradient(to bottom, #f7d308, #f5720a);
     color: white;
@@ -38,7 +38,7 @@ body {
     margin-bottom: 30px;
 }
 
-/* Shared Input/Output Style */
+
 .textBox {
     background-color: white;
     border: 2px solid orange;
@@ -51,14 +51,14 @@ body {
     white-space: pre-wrap;
 }
 
-/* Key Input Style */
+
 .keyInput {
     border: 2px solid #12a70f;
     padding: 6px;
     border-radius: 4px;
 }
 
-/* Updated button style */
+
 .button {
     background-color: #0fd93e;
     border: 2px solid #12a70f;
@@ -74,7 +74,7 @@ body {
     background-color: #2ba214;
 }
 
-/* Encoding/Decoding Layout */
+
 .rowFlex {
     display: flex;
     align-items: center;
@@ -82,7 +82,7 @@ body {
     gap: 10px;
 }
 
-/* Cipher selection layout */
+
 .cipherFlex {
     display: flex;
     justify-content: space-between;
