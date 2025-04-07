@@ -1,3 +1,11 @@
+
+
+body{
+    margin: 0;
+    background: gray;
+    text-align: center;
+}
+
 .topLeftLogo {
     position: absolute;
     top: 0;
@@ -11,6 +19,37 @@ body{
     margin: 0;
     background: gray;
     text-align: center;
+}
+
+
+.outputArea{
+   background-color: rgb(179, 25, 14);
+   max-width: fit-content;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.leftColumn{
+    float: left;
+    width: 33.33%;
+}
+
+.middleColumn{
+    float: left;
+    width: 33.33%;
+}
+
+.rightColumn{
+    float: left;
+    width: 33.33%;
+}
+
+.button{
+    background-color: rgb(179, 25, 14);
+    border-radius: 10px;
+    color: black;
+    border: 10px black;
+    padding: 3px 15px;
 }
 
 
