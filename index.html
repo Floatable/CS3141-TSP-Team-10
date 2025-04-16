@@ -262,7 +262,7 @@ function affineClicked() {
     }
 
     function binDecode() {
-        let binaryValue = String(document.querySelector("#decodeInput").value);
+        let binaryValue = String(document.querySelector("#decodeInput").value).trim();
         let baseTenValue = 0;
         let place = 0;
         let output = document.querySelector("#decodeOutput");
