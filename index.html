@@ -232,8 +232,14 @@ function affineClicked() {
         let value = 0;
         let output = document.querySelector("#encodeOutput");
         //make sure input is valid
+        for(let i = 0; i < baseTenValue.toString().length; i++) {
+            if(isNaN(baseTenValue.charAt(i))) {
+                output.innerHTML = "Please enter only numbers";
+                return;
+            }
+        }
         if (isNaN(parseInt(baseTenValue)) || parseInt(baseTenValue) < 0) {
-            output.innerHTML = "Incorrect input, please try again";
+            output.innerHTML = "Please enter only numbers";
             return;
         } else {
             value = parseInt(baseTenValue);
