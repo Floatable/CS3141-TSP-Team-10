@@ -50,7 +50,7 @@ body {
     resize: none;
     overflow-y: auto;
     white-space: pre-wrap;
-    font-family: "Lucida Console", "Courier New", monospace;
+    
 }
 
 
@@ -90,12 +90,4 @@ body {
     justify-content: space-evenly;
     align-items: center;
     gap: 20px;
-}
-
-#keyInputSection {
-    display: none;
-}
-
-.centeredMenu {
-    justify-content: center !important;
 }
