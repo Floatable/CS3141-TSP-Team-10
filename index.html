@@ -133,37 +133,26 @@
     const cipherFlex = document.getElementById("cipherSection");
     const keyInput = document.getElementById("keyInputSection");
 
-    // Update which functions to bind to encode/decode buttons
+    // Update cipher logic
     switch (cipher) {
-        case 'Binary':
-            binaryClicked();
-            break;
-        case 'Hex':
-            hexClicked();
-            break;
-        case 'Morse':
-            morseClicked();
-            break;
-        case 'Caesar':
-            caesarClicked();
-            break;
-        case 'Vigenere':
-            vigenereClicked();
-            break;
-        case 'Affine':
-            affineClicked();
-            break;
+        case 'Binary': binaryClicked(); break;
+        case 'Hex': hexClicked(); break;
+        case 'Morse': morseClicked(); break;
+        case 'Caesar': caesarClicked(); break;
+        case 'Vigenere': vigenereClicked(); break;
+        case 'Affine': affineClicked(); break;
     }
 
-    // Show/hide key input + align menu accordingly
+    // Show/hide key input with transitions
     if (cipher === 'Caesar' || cipher === 'Vigenere') {
-        keyInput.style.display = "block";
+        keyInput.classList.add("show");
         cipherFlex.classList.remove("centeredMenu");
     } else {
-        keyInput.style.display = "none";
+        keyInput.classList.remove("show");
         cipherFlex.classList.add("centeredMenu");
     }
 }
+
 
 
 
@@ -338,6 +327,7 @@ function affineClicked() {
         }
     }
 
+    
     // HEX FUNCTIONS
 
     function hexEncode() {
