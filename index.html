@@ -22,31 +22,32 @@
             </div>
     
             <!-- Cipher Selection Section -->
-            <div class="section cipherFlex">
+            <div class="section cipherFlex" id="cipherSection">
                 <!-- Cipher selection -->
-                <div>
+                <div id="cipherMenu">
                     <p>Please select a cipher to begin:</p>
-                    <input type="radio" id="Binary" name="selectedCipher" value="Binary" onclick="binaryClicked()">
+                    <input type="radio" id="Binary" name="selectedCipher" value="Binary" onclick="cipherSelected('Binary')">
                     <label for="Binary">Binary</label><br>
-                    <input type="radio" id="Hex" name="selectedCipher" value="Hex" onclick="hexClicked()">
+                    <input type="radio" id="Hex" name="selectedCipher" value="Hex" onclick="cipherSelected('Hex')">
                     <label for="Hex">Hex</label><br>
-                    <input type="radio" id="Morse" name="selectedCipher" value="Morse" onclick="morseClicked()">
+                    <input type="radio" id="Morse" name="selectedCipher" value="Morse" onclick="cipherSelected('Morse')">
                     <label for="Morse">Morse</label><br>
-                    <input type="radio" id="Caesar" name="selectedCipher" value="Caesar" onclick="caesarClicked()">
+                    <input type="radio" id="Caesar" name="selectedCipher" value="Caesar" onclick="cipherSelected('Caesar')">
                     <label for="Caesar">Caesar</label><br>
-                    <input type="radio" id="Vigenere" name="selectedCipher" value="Vigenere" onclick="vigenereClicked()">
+                    <input type="radio" id="Vigenere" name="selectedCipher" value="Vigenere" onclick="cipherSelected('Vigenere')">
                     <label for="Vigenere">Vigenere</label><br>
-                    <input type="radio" id="Affine" name="selectedCipher" value="Affine" onclick="affineClicked()">
+                    <input type="radio" id="Affine" name="selectedCipher" value="Affine" onclick="cipherSelected('Affine')">
                     <label for="Affine">Affine</label><br>
                 </div>
-    
+            
                 <!-- Key input -->
-                <div>
+                <div id="keyInputSection">
                     <p>Input key for Vigenere/Caesar cipher:</p>
                     <input type="text" placeholder="Insert key" id="key" name="Key" class="keyInput">
                     <input type="button" value="Submit" class="button" id="setKeyButton">
                     <p id="keyCheck" style="color: green; margin-top: 10px;"></p>
                 </div>
+            </div>
 
             </div>
     
@@ -130,99 +131,42 @@
 
     // DISPLAY CIPHER FUNCTIONS + BUTTON MAPPING
 
- function binaryClicked() {
-    document.getElementById("cipherNamespace").innerHTML = "Binary Cipher";
-    document.getElementById("cipherDescription").innerHTML = "";
+    function cipherSelected(cipher) {
+    const cipherFlex = document.getElementById("cipherSection");
+    const keyInput = document.getElementById("keyInputSection");
 
-    // Set behavior of existing buttons
-    document.getElementById("encodeButton").setAttribute("onclick", "binEncode()");
-    document.getElementById("decodeButton").setAttribute("onclick", "binDecode()");
+    // Update which functions to bind to encode/decode buttons
+    switch (cipher) {
+        case 'Binary':
+            binaryClicked();
+            break;
+        case 'Hex':
+            hexClicked();
+            break;
+        case 'Morse':
+            morseClicked();
+            break;
+        case 'Caesar':
+            caesarClicked();
+            break;
+        case 'Vigenere':
+            vigenereClicked();
+            break;
+        case 'Affine':
+            affineClicked();
+            break;
+    }
 
-    //Update Description
-    document.getElementById("cipherDescription").innerHTML = "A binary number is a number represented in base two, " +
-        "unlike the base ten (decimal) numbers that are usually used to represent numbers. " +
-        "Each digit in a binary number, called a bit, is either a one or a two. Binary is used internally in " + 
-        "most modern computers as it is easy to use with circuits and logic gates.";
+    // Show/hide key input + align menu accordingly
+    if (cipher === 'Caesar' || cipher === 'Vigenere') {
+        keyInput.style.display = "block";
+        cipherFlex.classList.remove("centeredMenu");
+    } else {
+        keyInput.style.display = "none";
+        cipherFlex.classList.add("centeredMenu");
+    }
 }
 
-function hexClicked() {
-    document.getElementById("cipherNamespace").innerHTML = "Hex Cipher";
-    document.getElementById("cipherDescription").innerHTML = "";
-
-    document.getElementById("encodeButton").setAttribute("onclick", "hexEncode()");
-    document.getElementById("decodeButton").setAttribute("onclick", "hexDecode()");
-
-     //Update Description
-     document.getElementById("cipherDescription").innerHTML = "A hexadecimal or hex number is a number represented in base sixteen, " +
-        "unlike the base ten (decimal) numbers that are usually used to represent numbers. " +
-        "Each digit in a hex number can have a value up to fifteen but there are no single digit numbers that can represent values " +
-        "above nine. Therefore, A, B, C, D, E, and F are used to represent 10, 11, 12, 13, 14, and 15 respectively. To distinguish " +
-        "between decimal and hex numbers, a hex number often starts with 0x before any of the digits. For example, 0x103 only " +
-        "contains digits found in decimal, but the 0x lets readers know that it should be interpreted as a hex number."
-}
-
-function morseClicked() {
-    document.getElementById("cipherNamespace").innerHTML = "Morse Cipher";
-    document.getElementById("cipherDescription").innerHTML = "";
-
-    document.getElementById("encodeButton").setAttribute("onclick", "morseEncode()");
-    document.getElementById("decodeButton").setAttribute("onclick", "morseDecode()");
-
-    //Update Description
-    document.getElementById("cipherDescription").innerHTML = "Morse code is a method of communication that encodes text characters " +
-        "as either dots or dashes. These dots and dashes can be represented as the symbols '.' and '-' but the real strength of " +
-        "morse code comes from the other ways it can be communicated. A flashing light can represen dots and dashes by varying the " +
-        "length of time the light is active. Morse can also be sent as sound, with varying lengths of noise being sent long distances."
-}
-
-
-function caesarClicked() {
-    document.getElementById("cipherNamespace").innerHTML = "Caesar Cipher";
-    document.getElementById("cipherDescription").innerHTML = "";
-
-    document.getElementById("encodeButton").setAttribute("onclick", "caesarEncode()");
-    document.getElementById("decodeButton").setAttribute("onclick", "caesarDecode()");
-    document.getElementById("setKeyButton").setAttribute("onclick", "setCaesarKey()");
-
-    //Update Description
-    document.getElementById("cipherDescription").innerHTML = "A ceasar cipher is a type of substitution cipher in which each letter of " +
-        "the original message is replaced with a different letter of the alphabet. This is done by picking a numeric key and moving each " +
-        "letter of the original text forward in the alphabet by that much. If a letter goes past 'z', it wraps back around to 'a'. " + 
-        "For example, with a key of three, 'a' would become 'd', 'b' would becode 'e', and so on."
-}
-
-
-function vigenereClicked() {
-    document.getElementById("cipherNamespace").innerHTML = "Vigenere Cipher";
-    document.getElementById("cipherDescription").innerHTML = "";
-
-    document.getElementById("encodeButton").setAttribute("onclick", "vigenereEncode()");
-    document.getElementById("decodeButton").setAttribute("onclick", "vigenereDecode()");
-    document.getElementById("setKeyButton").setAttribute("onclick", "setVigenereKey()");
-
-     //Update Description
-     document.getElementById("cipherDescription").innerHTML = "A ceasar cipher is a type of substitution cipher in which each letter of " +
-        "the original message is replaced with a different letter of the alphabet. This is done by picking a keyword and shifting each " +
-        "letter of the original text based on a letter of the keyword. This is a more secure version of the " +
-        "caesar cipher because if your message repeats " +
-        "letters or words, they will be unlikely to appear as repeated letters in the ciphertext."
-}
-
-function affineClicked() {
-    document.getElementById("cipherNamespace").innerHTML = "Affine Cipher";
-    document.getElementById("cipherDescription").innerHTML = "";
-
-    document.getElementById("encodeButton").setAttribute("onclick", "affineEncode()");
-    document.getElementById("decodeButton").setAttribute("onclick", "affineDecode()");
-
-    //Update Description
-     document.getElementById("cipherDescription").innerHTML = "The affine cipher is a type of monoalphabetic substitution cipher, where " + 
-     "each letter in an alphabet is mapped to its numeric equivalent, encrypted using a simple mathematical function, and converted back " +
-     "to a letter. The formula an affine cipher uses to encryot is (ax+b) mod c where 'a' and 'b' are keys, 'c' is the size of the alphabet, and " +
-     "'x' is the letter (in numeric form) that is being encrypted. The output is mod 'c' which means that it is reduced to its remainder" + 
-     "when divided by c. The decryption formula of a^(-1) * (x-b) uses the inverse of 'a' mod c. The inverse of 'a' mod c is the number" +
-     "that can be multiplied with 'a' to equal 1 mod c."
-}
 
 
     // BINARY FUNCTIONS
