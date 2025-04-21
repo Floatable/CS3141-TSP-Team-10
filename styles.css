@@ -107,6 +107,8 @@ body {
 }
 
 
+
+
 #keyInputSection {
     opacity: 0;
     max-height: 0;
@@ -124,40 +126,3 @@ body {
 .centeredMenu {
     justify-content: center !important;
 }
-
-
-
-.rightPane h2,
-.rightPane p {
-    opacity: 0;
-    transform: translateX(30px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.rightPane .animate {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.fade-enter {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  
-  .fade-enter-active {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-  
-  .fade-exit {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  .fade-exit-active {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-  
