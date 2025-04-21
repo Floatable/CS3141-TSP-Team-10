@@ -352,6 +352,53 @@ function affineClicked() {
         });
     }
 
+            const cipherSelect = document.getElementById('cipher');
+            const insertKeyDiv = document.getElementById('insert-key');
+        const cipherInfoBox = document.getElementById('cipher-info-box');
+
+        cipherSelect.addEventListener('change', () => {
+        const selectedCipher = cipherSelect.value;
+
+        // Handle insert-key visibility
+        if (selectedCipher === 'caesar' || selectedCipher === 'vigenere') {
+            fadeIn(insertKeyDiv);
+        } else {
+            fadeOut(insertKeyDiv);
+        }
+
+        // Always animate cipher description
+        fadeIn(cipherInfoBox);
+        });
+
+        // Utility functions
+        function fadeIn(element) {
+        element.classList.remove('fade-exit', 'fade-exit-active');
+        element.style.display = 'block'; // Make sure it's visible before animating
+        requestAnimationFrame(() => {
+            element.classList.add('fade-enter');
+            requestAnimationFrame(() => {
+            element.classList.add('fade-enter-active');
+            });
+        });
+
+        setTimeout(() => {
+            element.classList.remove('fade-enter', 'fade-enter-active');
+        }, 300); // match CSS duration
+        }
+
+        function fadeOut(element) {
+        element.classList.remove('fade-enter', 'fade-enter-active');
+        element.classList.add('fade-exit');
+        requestAnimationFrame(() => {
+            element.classList.add('fade-exit-active');
+        });
+
+        setTimeout(() => {
+            element.classList.remove('fade-exit', 'fade-exit-active');
+            element.style.display = 'none';
+        }, 300);
+        }
+
 
     // HEX FUNCTIONS
 
