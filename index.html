@@ -169,6 +169,7 @@
         "unlike the base ten (decimal) numbers that are usually used to represent numbers. " +
         "Each digit in a binary number, called a bit, is either a one or a two. Binary is used internally in " + 
         "most modern computers as it is easy to use with circuits and logic gates.";
+        triggerRightPaneAnimation();
 }
 
 function hexClicked() {
@@ -185,6 +186,7 @@ function hexClicked() {
         "above nine. Therefore, A, B, C, D, E, and F are used to represent 10, 11, 12, 13, 14, and 15 respectively. To distinguish " +
         "between decimal and hex numbers, a hex number often starts with 0x before any of the digits. For example, 0x103 only " +
         "contains digits found in decimal, but the 0x lets readers know that it should be interpreted as a hex number."
+        triggerRightPaneAnimation();
 }
 
 function morseClicked() {
@@ -199,6 +201,7 @@ function morseClicked() {
         "as either dots or dashes. These dots and dashes can be represented as the symbols '.' and '-' but the real strength of " +
         "morse code comes from the other ways it can be communicated. A flashing light can represen dots and dashes by varying the " +
         "length of time the light is active. Morse can also be sent as sound, with varying lengths of noise being sent long distances."
+        triggerRightPaneAnimation();
 }
 
 
@@ -215,6 +218,7 @@ function caesarClicked() {
         "the original message is replaced with a different letter of the alphabet. This is done by picking a numeric key and moving each " +
         "letter of the original text forward in the alphabet by that much. If a letter goes past 'z', it wraps back around to 'a'. " + 
         "For example, with a key of three, 'a' would become 'd', 'b' would becode 'e', and so on."
+        triggerRightPaneAnimation();
 }
 
 
@@ -232,6 +236,7 @@ function vigenereClicked() {
         "letter of the original text based on a letter of the keyword. This is a more secure version of the " +
         "caesar cipher because if your message repeats " +
         "letters or words, they will be unlikely to appear as repeated letters in the ciphertext."
+        triggerRightPaneAnimation();
 }
 
 function affineClicked() {
@@ -248,6 +253,7 @@ function affineClicked() {
      "'x' is the letter (in numeric form) that is being encrypted. The output is mod 'c' which means that it is reduced to its remainder" + 
      "when divided by c. The decryption formula of a^(-1) * (x-b) uses the inverse of 'a' mod c. The inverse of 'a' mod c is the number" +
      "that can be multiplied with 'a' to equal 1 mod c."
+     triggerRightPaneAnimation();
 }
 
 
@@ -326,6 +332,17 @@ function affineClicked() {
             return;
         }
     }
+
+    // ANIMATIONS
+    function triggerRightPaneAnimation() {
+        const elements = document.querySelectorAll('.rightPane h2, .rightPane p');
+        elements.forEach(el => {
+            el.classList.remove('animate'); // reset animation
+            void el.offsetWidth; // force reflow to restart animation
+            el.classList.add('animate');
+        });
+    }
+
 
     // HEX FUNCTIONS
 

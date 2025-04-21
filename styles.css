@@ -108,20 +108,33 @@ body {
 
 
 #keyInputSection {
-    overflow: hidden;
-    max-height: 0;
     opacity: 0;
-    transition: opacity 0.4s ease, max-height 0.4s ease;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
 }
-
 
 #keyInputSection.show {
-    display: block;
     opacity: 1;
-    max-height: 200px; /* enough space for input + button */
+    max-height: 200px; 
 }
+
 
 
 .centeredMenu {
     justify-content: center !important;
+}
+
+
+
+.rightPane h2,
+.rightPane p {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.rightPane .animate {
+    opacity: 1;
+    transform: translateX(0);
 }
