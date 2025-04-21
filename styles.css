@@ -91,3 +91,11 @@ body {
     align-items: center;
     gap: 20px;
 }
+
+#keyInputSection {
+    display: none;
+}
+
+.centeredMenu {
+    justify-content: center !important;
+}

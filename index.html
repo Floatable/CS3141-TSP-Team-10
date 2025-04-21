@@ -22,33 +22,33 @@
             </div>
     
             <!-- Cipher Selection Section -->
-            <div class="section cipherFlex">
+            <div class="section cipherFlex" id="cipherSection">
                 <!-- Cipher selection -->
-                <div>
+                <div id="cipherMenu">
                     <p>Please select a cipher to begin:</p>
-                    <input type="radio" id="Binary" name="selectedCipher" value="Binary" onclick="binaryClicked()">
+                    <input type="radio" id="Binary" name="selectedCipher" value="Binary" onclick="cipherSelected('Binary')">
                     <label for="Binary">Binary</label><br>
-                    <input type="radio" id="Hex" name="selectedCipher" value="Hex" onclick="hexClicked()">
+                    <input type="radio" id="Hex" name="selectedCipher" value="Hex" onclick="cipherSelected('Hex')">
                     <label for="Hex">Hex</label><br>
-                    <input type="radio" id="Morse" name="selectedCipher" value="Morse" onclick="morseClicked()">
+                    <input type="radio" id="Morse" name="selectedCipher" value="Morse" onclick="cipherSelected('Morse')">
                     <label for="Morse">Morse</label><br>
-                    <input type="radio" id="Caesar" name="selectedCipher" value="Caesar" onclick="caesarClicked()">
+                    <input type="radio" id="Caesar" name="selectedCipher" value="Caesar" onclick="cipherSelected('Caesar')">
                     <label for="Caesar">Caesar</label><br>
-                    <input type="radio" id="Vigenere" name="selectedCipher" value="Vigenere" onclick="vigenereClicked()">
+                    <input type="radio" id="Vigenere" name="selectedCipher" value="Vigenere" onclick="cipherSelected('Vigenere')">
                     <label for="Vigenere">Vigenere</label><br>
-                    <input type="radio" id="Affine" name="selectedCipher" value="Affine" onclick="affineClicked()">
+                    <input type="radio" id="Affine" name="selectedCipher" value="Affine" onclick="cipherSelected('Affine')">
                     <label for="Affine">Affine</label><br>
                 </div>
-    
+            
                 <!-- Key input -->
-                <div>
+                <div id="keyInputSection">
                     <p>Input key for Vigenere/Caesar cipher:</p>
                     <input type="text" placeholder="Insert key" id="key" name="Key" class="keyInput">
                     <input type="button" value="Submit" class="button" id="setKeyButton">
                     <p id="keyCheck" style="color: green; margin-top: 10px;"></p>
                 </div>
-
             </div>
+            
     
             <!-- Decoding Section -->
             <div class="section rowFlex">
@@ -129,6 +129,43 @@
 
 
     // DISPLAY CIPHER FUNCTIONS + BUTTON MAPPING
+    function cipherSelected(cipher) {
+    const cipherFlex = document.getElementById("cipherSection");
+    const keyInput = document.getElementById("keyInputSection");
+
+    // Update which functions to bind to encode/decode buttons
+    switch (cipher) {
+        case 'Binary':
+            binaryClicked();
+            break;
+        case 'Hex':
+            hexClicked();
+            break;
+        case 'Morse':
+            morseClicked();
+            break;
+        case 'Caesar':
+            caesarClicked();
+            break;
+        case 'Vigenere':
+            vigenereClicked();
+            break;
+        case 'Affine':
+            affineClicked();
+            break;
+    }
+
+    // Show/hide key input + align menu accordingly
+    if (cipher === 'Caesar' || cipher === 'Vigenere') {
+        keyInput.style.display = "block";
+        cipherFlex.classList.remove("centeredMenu");
+    } else {
+        keyInput.style.display = "none";
+        cipherFlex.classList.add("centeredMenu");
+    }
+}
+
+
 
  function binaryClicked() {
     document.getElementById("cipherNamespace").innerHTML = "Binary Cipher";
