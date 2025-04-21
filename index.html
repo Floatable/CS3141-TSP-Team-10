@@ -21,8 +21,8 @@
                 <div class="textBox" id="encodeOutput" placeholder="Output text will display here!"></div>
             </div>
     
-            <!-- Cipher Selection Section -->
-            <div class="section cipherFlex" id="cipherSection">
+             <!-- Cipher Selection Section -->
+             <div class="section cipherFlex" id="cipherSection">
                 <!-- Cipher selection -->
                 <div id="cipherMenu">
                     <p>Please select a cipher to begin:</p>
@@ -128,10 +128,41 @@
 
 
 
-    // DISPLAY CIPHER FUNCTIONS + BUTTON MAPPING
-    function cipherSelected(cipher) {
+      // DISPLAY CIPHER FUNCTIONS + BUTTON MAPPING
+      function cipherSelected(cipher) {
     const cipherFlex = document.getElementById("cipherSection");
     const keyInput = document.getElementById("keyInputSection");
+
+    // Update which functions to bind to encode/decode buttons
+    switch (cipher) {
+        case 'Binary':
+            binaryClicked();
+            break;
+        case 'Hex':
+            hexClicked();
+            break;
+        case 'Morse':
+            morseClicked();
+            break;
+        case 'Caesar':
+            caesarClicked();
+            break;
+        case 'Vigenere':
+            vigenereClicked();
+            break;
+        case 'Affine':
+            affineClicked();
+            break;
+    }
+
+    // Show/hide key input + align menu accordingly
+    if (cipher === 'Caesar' || cipher === 'Vigenere') {
+        keyInput.style.display = "block";
+        cipherFlex.classList.remove("centeredMenu");
+    } else {
+        keyInput.style.display = "none";
+        cipherFlex.classList.add("centeredMenu");
+    }
 
     // Update cipher logic
     switch (cipher) {
