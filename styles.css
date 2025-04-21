@@ -107,19 +107,20 @@ body {
 }
 
 
-#keyInputSection {
-    overflow: hidden;
-    max-height: 0;
-    opacity: 0;
-    transition: opacity 0.4s ease, max-height 0.4s ease;
-}
 
+
+#keyInputSection {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
+}
 
 #keyInputSection.show {
-    display: block;
     opacity: 1;
-    max-height: 200px; /* enough space for input + button */
+    max-height: 200px; 
 }
+
 
 
 .centeredMenu {
